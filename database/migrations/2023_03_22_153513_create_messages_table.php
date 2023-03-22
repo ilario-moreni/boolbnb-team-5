@@ -15,22 +15,14 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            
-            /* foreign key apartment id */
-            $table->unsignedBigInteger('apartment_id')
-            ->nullable()
-            ->after('id');
-            $table->foreign('apartment_id')
-            ->references('id')
-            ->on('apartments')
-            ->onDelete('set null');
 
+            /* foreign key apartment id */
+            $table->unsignedBigInteger('apartment_id')->nullable();
+            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete('set null');
             $table->string('name', 30);
             $table->string('surname', 30);
             $table->string('email')->unique();
             $table->text('description');
-
-
             $table->timestamps();
         });
     }

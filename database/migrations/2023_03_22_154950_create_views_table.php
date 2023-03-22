@@ -17,14 +17,8 @@ return new class extends Migration
             $table->id();
 
             /* foreign key apartment id */
-            $table->unsignedBigInteger('apartment_id')
-            ->nullable()
-            ->after('id');
-            $table->foreign('apartment_id')
-            ->references('id')
-            ->on('apartments')
-            ->onDelete('set null');
-
+            $table->unsignedBigInteger('apartment_id')->nullable();
+            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete('set null');
             $table->ipAddress('ip_address');
 
             $table->timestamps();
