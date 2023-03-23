@@ -104,8 +104,10 @@ class ApartmentController extends Controller
         $slug = Apartment::generateSlug($request->title, '-');
 
         $form_data['slug'] = $slug;
-        if ($request->hasFile('image')) {
-            Storage::delete($apartment->image);
+        if ($request->has('image')) {
+            if ($apartment->image) {
+                Storage::delete($apartment->image);
+            }
         }
 
         $path = Storage::disk('public')->put('apartment_images', $request->image);
