@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -18,7 +19,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $user = Auth::user();
+        $apartments = Apartment::where('user_id', $user->id)->get();
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -41,8 +43,12 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
+
         /* recupero dati validati */
         $form_data = $request->validated();
+
+        $user = Auth::user();
+
 
         /* controllo e salvataggio dell'immagine */
         if ($request->has('image')) {
@@ -54,6 +60,7 @@ class ApartmentController extends Controller
         /* generazione e assegnazione slug */
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
+        $forma_data['user_id'] = $user->id;
 
         /* creazione riempimento e salvataggio istanza di apartment */
         $newApartment = new Apartment();
@@ -72,8 +79,13 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
+        $user = Auth::user();
+
+        if ($user->id != $apartment->user_id) {
+            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+        }
         return view('admin.apartments.show', compact('apartment'));
+        /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
     }
 
     /**
@@ -83,7 +95,14 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Apartment $apartment)
+
     {
+        $user = Auth::user();
+
+        if ($user->id != $apartment->user_id) {
+            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+        }
+
         return view('admin.apartments.edit', compact('apartment'));
     }
 
@@ -96,6 +115,11 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
+
+        $user = Auth::user();
+        if ($user->id != $apartment->user_id) {
+            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+        }
         //VIENE VALIDATO IL FORM INVIATO DALL'UTENTE ATTRAVERSO LA CLASSE "UpdateApartmentRequest" CHE CONTROLLA CHE I DATI SIANO CORRETTI E COERENTI CON LE REGOLE DI VALIDAZIONE DEFINITE
         $form_data = $request->validated();
 
@@ -123,6 +147,10 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        $user = Auth::user();
+        if ($user->id != $apartment->user_id) {
+            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+        }
         //Elimino il progetto specificato
         $apartment->delete();
 
