@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+use Illuminate\Support\Facades\Storage;
+//Richiamo il Model
+use App\Models\Apartment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
-use Illuminate\Support\Facades\Storage;
-
-//Richiamo il Model
-use App\Models\Apartment;
-
-
 
 class ApartmentController extends Controller
 {
@@ -21,7 +19,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**

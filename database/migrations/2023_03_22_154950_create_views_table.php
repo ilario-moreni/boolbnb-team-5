@@ -16,11 +16,7 @@ return new class extends Migration
         Schema::create('views', function (Blueprint $table) {
             $table->id();
 
-            /* foreign key apartment id */
-            $table->unsignedBigInteger('apartment_id')->nullable();
-            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete('set null');
             $table->ipAddress('ip_address');
-
             $table->timestamps();
         });
     }
