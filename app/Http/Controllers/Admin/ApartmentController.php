@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+use Illuminate\Support\Facades\Storage;
+//Richiamo il Model
 use App\Models\Apartment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
-use App\Http\Controllers\Controller;
 
 class ApartmentController extends Controller
 {
@@ -61,7 +63,7 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.edit', compact('apartment'));
     }
 
     /**
@@ -73,7 +75,23 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        //VIENE VALIDATO IL FORM INVIATO DALL'UTENTE ATTRAVERSO LA CLASSE "UpdateApartmentRequest" CHE CONTROLLA CHE I DATI SIANO CORRETTI E COERENTI CON LE REGOLE DI VALIDAZIONE DEFINITE
+        $form_data = $request->validated();
+
+        //VIENE GENERATO UNO "slug" UNIVOCO PER L'APPARTAMENTO UTILIZZANDO IL METODO STATICO "generateSlug()" NEL MODELLO "Apartment".
+        $slug = Apartment::generateSlug($request->title, '-');
+
+        $form_data['slug'] = $slug;
+        if ($request->hasFile('image')) {
+            Storage::delete($apartment->image);
+        }
+
+        $path = Storage::disk('public')->put('apartment_images', $request->image);
+        $form_data['image'] = $path;
+
+        $apartment->update($form_data);
+
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
@@ -84,6 +102,10 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        //Elimino il progetto specificato
+        $apartment->delete();
+
+        //Reindirizza alla pagina index.
+        return redirect()->route('admin.apartments.index');
     }
 }
