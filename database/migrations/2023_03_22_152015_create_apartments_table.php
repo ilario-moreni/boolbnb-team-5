@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            /* foreign user id */
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete('set null');
             $table->string('title', 100)->unique();
             $table->string('slug')->unique();
             $table->tinyInteger('n_room');
