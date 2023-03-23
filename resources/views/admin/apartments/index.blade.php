@@ -29,7 +29,7 @@
                             <td>{{$apartment->created_at}}</td>
                             <td>{{$apartment->updated_at}}</td>
                             <td class="d-flex justify-content-around">
-                                <a href="{{-- {{route('admin.apartments.show', $apartment->slug)}} --}}" title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square">
+                                <a href="{{route('admin.apartments.show', $apartment->slug)}}" title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                                 <a href="{{-- {{route('admin.apartments.edit', $apartment->slug)}} --}}" title="Modifica Appartamento" class="btn btn-sm btn-warning btn-square">
