@@ -1,1 +1,24 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+.logo-font {
+    font-family: Lucida Handwriting;
+    font-size: 40px;
+}
+
+.gardient-blue-white {
+    background: rgb(50,221,231);
+    background: linear-gradient(214deg, rgba(50,221,231,1) 0%, rgba(42,165,226,1) 100%);
+}
+
+.pt-100 {
+    padding-top: 100px;
+}
+
+.f-20 {
+    font-size: 20px;
+}
+
+.text-sun {
+    background: rgb(240,178,6);
+    background: linear-gradient(24deg, rgba(240,178,6,1) 0%, rgba(245,229,76,1) 52%);
+}

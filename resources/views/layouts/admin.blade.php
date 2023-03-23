@@ -25,8 +25,8 @@
 <body>
     <div id="app">
 
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Portfolio</a>
+        <header class="navbar bg-* sticky-top flex-md-nowrap p-2 w-100 position-absolute">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo-font text-white" href="/">BoolBnB</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,17 +45,16 @@
         </header>
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
-                    <div class="position-sticky pt-3">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse gardient-blue-white">
+                    <div class="position-sticky pt-100">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                {{Route::currentRouteName()}}
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}" href="{{route('admin.dashboard')}}">
+                                <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.dashboard' ? 'text-sun' : '' }}" href="{{route('admin.dashboard')}}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}" href="{{route('admin.apartments.index') }}">
+                                <a class="nav-link text-dark f-20 {{ Route::currentRouteName() == 'admin.apartments.index' ? 'text-sun' : '' }}" href="{{route('admin.apartments.index') }}">
                                     <i class="fa-solid fa-building fa-lg fa-fw"></i> Apartments
                                 </a>
                             </li>
