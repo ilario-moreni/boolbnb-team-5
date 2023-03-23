@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use PhpParser\Node\Expr\FuncCall;
 
-
-
-
 class Apartment extends Model
 {
     use HasFactory;

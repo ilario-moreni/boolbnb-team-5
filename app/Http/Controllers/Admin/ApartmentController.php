@@ -142,6 +142,7 @@ class ApartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * 
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
