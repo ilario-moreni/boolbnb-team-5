@@ -54,6 +54,7 @@ class ApartmentController extends Controller
         /* generazione e assegnazione slug */
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
+        // Apartment::create($form_data);
 
         /* creazione riempimento e salvataggio istanza di apartment */
         $newApartment = new Apartment();
