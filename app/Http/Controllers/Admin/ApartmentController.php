@@ -9,6 +9,7 @@ use App\Models\Apartment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -30,7 +31,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        /* indirizzamento alla pagina di creazione di un nuovo apartment */
+        return view('admin.apartments.create');
     }
 
     /**
@@ -41,7 +43,27 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        //
+        /* recupero dati validati */
+        $form_data = $request->validated();
+
+        /* controllo e salvataggio dell'immagine */
+        if($request->has('image')){
+            $path = Storage::disk('public')->put('apartment_images', $request->image);
+            
+            $form_data['image'] = $path;
+        }
+        
+        /* generazione e assegnazione slug */
+        $slug = Apartment::generateSlug($request->title);
+        $form_data['slug'] = $slug;
+
+        /* creazione riempimento e salvataggio istanza di apartment */
+        $newApartment = new Apartment();
+        $newApartment->fill($form_data);
+        $newApartment->save();
+        
+        /* reindirizzamento alla pagina index una volta completate le operazioni precedenti */
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
@@ -52,7 +74,8 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
