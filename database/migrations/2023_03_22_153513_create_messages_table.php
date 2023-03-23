@@ -16,9 +16,6 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
-            /* foreign key apartment id */
-            $table->unsignedBigInteger('apartment_id')->nullable();
-            $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->string('name', 30);
             $table->string('surname', 30);
             $table->string('email')->unique();
