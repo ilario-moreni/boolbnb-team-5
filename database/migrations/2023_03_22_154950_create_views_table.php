@@ -18,7 +18,7 @@ return new class extends Migration
 
             /* foreign key apartment id */
             $table->unsignedBigInteger('apartment_id')->nullable();
-            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete('set null');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->ipAddress('ip_address');
 
             $table->timestamps();

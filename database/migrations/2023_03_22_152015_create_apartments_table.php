@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             /* foreign user id */
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('title', 100)->unique();
             $table->string('slug')->unique();
             $table->tinyInteger('n_room');
