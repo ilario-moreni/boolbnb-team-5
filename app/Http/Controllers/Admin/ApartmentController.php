@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use Illuminate\Support\Facades\Storage;
 //Richiamo il Model
 use App\Models\Apartment;
 use App\Http\Controllers\Controller;
@@ -47,12 +45,12 @@ class ApartmentController extends Controller
         $form_data = $request->validated();
 
         /* controllo e salvataggio dell'immagine */
-        if($request->has('image')){
+        if ($request->has('image')) {
             $path = Storage::disk('public')->put('apartment_images', $request->image);
-            
+
             $form_data['image'] = $path;
         }
-        
+
         /* generazione e assegnazione slug */
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
@@ -61,7 +59,7 @@ class ApartmentController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($form_data);
         $newApartment->save();
-        
+
         /* reindirizzamento alla pagina index una volta completate le operazioni precedenti */
         return redirect()->route('admin.apartments.index');
     }
