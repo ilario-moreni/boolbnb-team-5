@@ -7,7 +7,7 @@
                 <h2>Apartments List</h2>
             </div>
             <div>
-                <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-primary mt-4">Add Apartment</a>
+                <a href="{{-- {{route('admin.projects.create')}} --}}" class="btn btn-sm btn-primary mt-4">Add Apartment</a>
             </div>
         </div>
     </div>
@@ -29,13 +29,13 @@
                             <td>{{$apartment->created_at}}</td>
                             <td>{{$apartment->updated_at}}</td>
                             <td class="d-flex justify-content-around">
-                                <a href="{{route('admin.apartments.show', $apartment->slug)}}" title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square">
+                                <a href="{{-- {{route('admin.apartments.show', $apartment->slug)}} --}}" title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="{{route('admin.apartments.edit', $apartment->slug)}}" title="Modifica Appartamento" class="btn btn-sm btn-warning btn-square">
+                                <a href="{{-- {{route('admin.apartments.edit', $apartment->slug)}} --}}" title="Modifica Appartamento" class="btn btn-sm btn-warning btn-square">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
-                                <form action="{{route('admin.apartments.destroy', $apartment->slug)}}" method="POST">
+                                <form action="{{-- {{route('admin.apartments.destroy', $apartment->slug)}} --}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-square btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-apartment" data-projectid="{{$apartment->id}}">
