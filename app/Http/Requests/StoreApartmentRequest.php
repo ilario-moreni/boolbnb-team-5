@@ -41,7 +41,7 @@ class StoreApartmentRequest extends FormRequest
             'title.required' => 'Il titolo è obbligatorio',
             'title.unique' => 'Questo titolo è già esistente',
             'title.max' => 'Il titolo può essere lungo al massimo :max caratteri.',
-            'n_bed.required' => 'Il numero di bagni è obbligatorio',
+            'n_bed.required' => 'Il numero di letti è obbligatorio',
             'n_room.required' => 'Il numero di stanze è obbligatorio',
             'n_bathroom.required' => 'Il numero di bagni è obbligatorio',
             'image.image' => 'Inserire un formato di immagine valido',
