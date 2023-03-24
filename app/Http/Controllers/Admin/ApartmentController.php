@@ -83,7 +83,7 @@ class ApartmentController extends Controller
         $user = Auth::user();
 
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
         return view('admin.apartments.show', compact('apartment'));
         /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
@@ -101,7 +101,7 @@ class ApartmentController extends Controller
         $user = Auth::user();
 
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
 
         return view('admin.apartments.edit', compact('apartment'));
@@ -119,7 +119,7 @@ class ApartmentController extends Controller
 
         $user = Auth::user();
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
         //VIENE VALIDATO IL FORM INVIATO DALL'UTENTE ATTRAVERSO LA CLASSE "UpdateApartmentRequest" CHE CONTROLLA CHE I DATI SIANO CORRETTI E COERENTI CON LE REGOLE DI VALIDAZIONE DEFINITE
         $form_data = $request->validated();
@@ -153,7 +153,7 @@ class ApartmentController extends Controller
     {
         $user = Auth::user();
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
         //Elimino il progetto specificato
         $apartment->delete();
