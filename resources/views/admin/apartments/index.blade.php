@@ -60,19 +60,19 @@
                                     </form>
                                 </td>
                             </tr>
-                        @empty
-                            <div class="container">
-                                <div class="row justify-content-center mt-5">
-                                    <div class="col-lg-8 col-md-10 col-sm-12">
-                                        <div class="alert alert-primary text-center" role="alert">
-                                            <h4 class="alert-heading mb-4">Il database dei tuoi annunci è vuoto.</h4>
-                                            <p class="lead">Clicca sul pulsante "Add Apartment" per crearne uno.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </tbody>
                     </table>
+                @empty
+                    <div class="container">
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-lg-8 col-md-10 col-sm-12">
+                                <div class="alert alert-primary text-center" role="alert">
+                                    <h4 class="alert-heading mb-4">Il database dei tuoi annunci è vuoto.</h4>
+                                    <p class="lead">Clicca sul pulsante "Add Apartment" per crearne uno.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforelse
             </div>
         </div>
