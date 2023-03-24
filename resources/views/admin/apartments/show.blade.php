@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container-fluid my-5">
-        <div class="row">
+        <div class="row bg-light-transparent">
             <div class="col-8 p-0">
                 {{-- <img class="w-100" src="{{ asset('storage/'.$apartment->image) }}" alt="{{ $apartment->title }}"> --}}
                 <img class="w-100" src="{{ $apartment->image }}" alt="{{ $apartment->title }}">
