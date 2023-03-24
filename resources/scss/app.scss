@@ -15,7 +15,6 @@
 }
 
 .selected {
-    color: black !important;
     color: rgba(255, 255, 255, 0.5);
     background-color:rgba(255, 255, 255, 0.5);
 }
@@ -27,6 +26,17 @@
     
 }
 
-.bg-dark-transparent {
-    background-color: rgba(0, 0, 0, 0.5);
+.bg-light-transparent {
+    background-color: rgb(253 253 253 / 35%);
+}
+
+.button-color {
+    background-color: rgb(67, 153, 192);
+    transition: .3s;
+}
+
+.button-color:hover {
+    background-color: rgb(67, 153, 192) !important;
+    box-shadow: 8px 8px rgb(156, 194, 217);
+    transition: .3s;
 }

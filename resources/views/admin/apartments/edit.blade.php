@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="container-fluid bg-dark-transparent text-white">
+    <div class="container-fluid">
         <form action="{{ route('admin.apartments.update', ['apartment' => $apartment['slug']]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
@@ -77,7 +77,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Salva</button>
+                    <button type="submit" class="btn button-color text-white">Salva</button>
                 </div>
         </form>
     </div>

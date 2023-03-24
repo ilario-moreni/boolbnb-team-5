@@ -7,7 +7,7 @@
     </h2>
     <div class="row justify-content-center ">
         <div class="col">
-            <div class="card bg-dark-transparent text-white">
+            <div class="card bg-light-transparent">
                 <div class="card-header">{{ __('User Dashboard') }}</div>
 
                 <div class="card-body">

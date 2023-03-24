@@ -7,13 +7,13 @@
                     <h2>Apartments List</h2>
                 </div>
                 <div>
-                    <a href="{{ route('admin.apartments.create') }}" class="btn btn-sm btn-primary mt-4">Add Apartment</a>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Add Apartment</a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table bg-dark-transparent text-white">
+                <table class="table bg-light-transparent ">
                     <thead class="table-dark">
                         <th>Image</th>
                         <th>Title</th>
