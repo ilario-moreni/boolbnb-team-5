@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table">
+                <table class="table bg-dark-transparent text-white">
                     <thead class="table-dark">
                         <th>Image</th>
                         <th>Title</th>
@@ -28,19 +28,19 @@
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->created_at }}</td>
                                 <td>{{ $apartment->updated_at }}</td>
-                                <td class="d-flex justify-content-around">
+                                <td class="">
                                     <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
-                                        title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square">
+                                        title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square m-3">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
                                     <a href="{{ route('admin.apartments.edit', $apartment->slug) }}"
-                                        title="Modifica Appartamento" class="btn btn-sm btn-warning btn-square">
+                                        title="Modifica Appartamento" class="btn btn-sm btn-warning btn-square mx-3">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-square btn-danger"
+                                        <button type="submit" class="btn btn-sm btn-square btn-danger m-3"
                                             data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
                                             data-projectid="{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash-can"></i>

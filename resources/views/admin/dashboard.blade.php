@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h2 class="fs-4 text-secondary my-4">
+    <h2 class="fs-4 my-4">
         {{ __('Dashboard') }}
     </h2>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ">
         <div class="col">
-            <div class="card">
+            <div class="card bg-dark-transparent text-white">
                 <div class="card-header">{{ __('User Dashboard') }}</div>
 
                 <div class="card-body">
