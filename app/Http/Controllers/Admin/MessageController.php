@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Message;
+use App\Models\Apartment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
@@ -16,7 +17,17 @@ class MessageController extends Controller
      */
     public function index()
     {
+
         $messages = Message::all();
+        foreach($messages as $message){
+            if($message->apartment_id == )
+        }
+        dd($messages);
+
+        if ($apartment)
+        dd($apartments['0']->id);
+
+
         
         return view('admin.messages.index');
     }
