@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-8">
                 {{-- <img class="w-100" src="{{ asset('storage/'.$apartment->image) }}" alt="{{ $apartment->title }}"> --}}
-                <img class="w-100" src="{{ $apartment->image }}" alt="{{ $apartment->title }}">
+                <img class="w-100" src="{{ asset('storage/'.$apartment->image) }}" alt="{{ $apartment->title }}">
             </div>
             <div class="col-4">
                 <h1>{{ $apartment->title }}</h1>

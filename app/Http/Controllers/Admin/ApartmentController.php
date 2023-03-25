@@ -121,21 +121,26 @@ class ApartmentController extends Controller
         if ($user->id != $apartment->user_id) {
             return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
+
         //VIENE VALIDATO IL FORM INVIATO DALL'UTENTE ATTRAVERSO LA CLASSE "UpdateApartmentRequest" CHE CONTROLLA CHE I DATI SIANO CORRETTI E COERENTI CON LE REGOLE DI VALIDAZIONE DEFINITE
         $form_data = $request->validated();
+
 
         //VIENE GENERATO UNO "slug" UNIVOCO PER L'APPARTAMENTO UTILIZZANDO IL METODO STATICO "generateSlug()" NEL MODELLO "Apartment".
         $slug = Apartment::generateSlug($request->title, '-');
 
+
         $form_data['slug'] = $slug;
-        if ($request->has('image')) {
+        if ($request->hasFile('image')) {
             if ($apartment->image) {
                 Storage::delete($apartment->image);
             }
         }
 
         $path = Storage::disk('public')->put('apartment_images', $request->image);
+
         $form_data['image'] = $path;
+
 
         $apartment->update($form_data);
 
