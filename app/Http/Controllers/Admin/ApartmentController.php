@@ -69,7 +69,7 @@ class ApartmentController extends Controller
         $newApartment->save();
 
         /* reindirizzamento alla pagina index una volta completate le operazioni precedenti */
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Annuncio creato correttamente');
     }
 
     /**
@@ -139,7 +139,7 @@ class ApartmentController extends Controller
 
         $apartment->update($form_data);
 
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Annuncio modificato correttamente');
     }
 
     /**
@@ -159,6 +159,6 @@ class ApartmentController extends Controller
         $apartment->delete();
 
         //Reindirizza alla pagina index.
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Annuncio cancellato correttamente');
     }
 }
