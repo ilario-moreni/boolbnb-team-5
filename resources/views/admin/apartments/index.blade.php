@@ -52,7 +52,8 @@
                                     <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-square btn-danger"
+                                        <button type="submit"
+                                            class="btn btn-sm btn-square btn-danger confirm-delete-button"
                                             data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
                                             data-projectid="{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash-can"></i>
@@ -74,6 +75,7 @@
                         </div>
                     </div>
                 @endforelse
+                @include ('admin.partials.modals')
             </div>
         </div>
     </div>
