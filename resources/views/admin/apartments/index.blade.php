@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img class="w-25" src="{{ $apartment->image }}" alt=""></td>
+                                <td><img class="w-25" src="{{ asset('storage/'.$apartment->image) }}" alt=""></td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->created_at }}</td>
                                 <td>{{ $apartment->updated_at }}</td>
