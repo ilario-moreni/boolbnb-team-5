@@ -59,6 +59,11 @@
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                     </form>
+
+                                    <a href="{{ route('admin.messages', $apartment->id) }}"
+                                        class="btn btn-sm btn-success btn-square">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @empty
