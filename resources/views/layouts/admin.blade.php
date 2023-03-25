@@ -27,7 +27,7 @@
 <body>
     <div id="app">
 
-        <header class="navbar bg-* sticky-top flex-md-nowrap p-2 w-100 position-absolute">
+        <header class="navbar bg-* sticky-top flex-md-nowrap p-2 w-100">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo-font text-white" href="/">BoolBnB</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                 data-bs-toggle="collapse" data-bs-target="#sidebarMenu">

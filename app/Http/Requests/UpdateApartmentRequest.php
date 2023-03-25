@@ -34,6 +34,7 @@ class UpdateApartmentRequest extends FormRequest
             'image' => ['nullable', 'image'],
             'latitude' => ['required'],
             'longitude' => ['required'],
+            'services' => ['nullable', 'exists:services,id'],
         ];
     }
     public function messages()

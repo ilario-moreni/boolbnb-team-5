@@ -53,6 +53,17 @@
                         @enderror
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Seleziona i servizi</label>
+                    @foreach ($services as $item)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $item['id'] }}" name="services[]">
+                            <label class="form-check-label">
+                                {{ $item['name'] }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Latitudine</label>
                     <input type="number" id="latitude" class="form-control" name="latitude">
