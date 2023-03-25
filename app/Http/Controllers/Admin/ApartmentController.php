@@ -49,7 +49,6 @@ class ApartmentController extends Controller
 
         $user = Auth::user();
 
-
         /* controllo e salvataggio dell'immagine */
         if ($request->has('image')) {
             $path = Storage::disk('public')->put('apartment_images', $request->image);
@@ -61,15 +60,16 @@ class ApartmentController extends Controller
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
 
-        $forma_data['user_id'] = $user->id;
+
 
         /* creazione riempimento e salvataggio istanza di apartment */
         $newApartment = new Apartment();
+        $newApartment->user_id = $user->id;
         $newApartment->fill($form_data);
         $newApartment->save();
 
         /* reindirizzamento alla pagina index una volta completate le operazioni precedenti */
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Annuncio creato correttamente');
     }
 
     /**
@@ -83,7 +83,7 @@ class ApartmentController extends Controller
         $user = Auth::user();
 
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
         return view('admin.apartments.show', compact('apartment'));
         /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
@@ -101,7 +101,7 @@ class ApartmentController extends Controller
         $user = Auth::user();
 
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
 
         return view('admin.apartments.edit', compact('apartment'));
@@ -119,27 +119,32 @@ class ApartmentController extends Controller
 
         $user = Auth::user();
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
+
         //VIENE VALIDATO IL FORM INVIATO DALL'UTENTE ATTRAVERSO LA CLASSE "UpdateApartmentRequest" CHE CONTROLLA CHE I DATI SIANO CORRETTI E COERENTI CON LE REGOLE DI VALIDAZIONE DEFINITE
         $form_data = $request->validated();
+
 
         //VIENE GENERATO UNO "slug" UNIVOCO PER L'APPARTAMENTO UTILIZZANDO IL METODO STATICO "generateSlug()" NEL MODELLO "Apartment".
         $slug = Apartment::generateSlug($request->title, '-');
 
+
         $form_data['slug'] = $slug;
-        if ($request->has('image')) {
+        if ($request->hasFile('image')) {
             if ($apartment->image) {
                 Storage::delete($apartment->image);
             }
         }
 
         $path = Storage::disk('public')->put('apartment_images', $request->image);
+
         $form_data['image'] = $path;
+
 
         $apartment->update($form_data);
 
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Annuncio modificato correttamente');
     }
 
     /**
@@ -153,12 +158,12 @@ class ApartmentController extends Controller
     {
         $user = Auth::user();
         if ($user->id != $apartment->user_id) {
-            return redirect()->route('admin.apartments.index')->with('warming', 'Accesso Negato');
+            return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
         //Elimino il progetto specificato
         $apartment->delete();
 
         //Reindirizza alla pagina index.
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Annuncio cancellato correttamente');
     }
 }
