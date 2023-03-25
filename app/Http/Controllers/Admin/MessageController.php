@@ -15,21 +15,19 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($_apartment_id)
     {
+        $_messages = Message::all();       
 
-        $messages = Message::all();
-        foreach($messages as $message){
-            if($message->apartment_id == )
-        }
-        dd($messages);
-
-        if ($apartment)
-        dd($apartments['0']->id);
-
-
+        $messages = [];
+        foreach ($_messages as $key => $_message) {
+            if ($_message->apartment_id == $_apartment_id){
+                array_push($messages, $_message);
+            }
+        };
         
-        return view('admin.messages.index');
+
+        return view('admin.messages.index', compact('messages'));
     }
 
     /**

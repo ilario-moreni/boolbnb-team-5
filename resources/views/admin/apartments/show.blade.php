@@ -31,10 +31,7 @@
 
                 {{ $apartment->latitude }}
                 {{ $apartment->longitude }}
-                <br>
-                <a href="{{ route('admin.messages.index', $apartment->id) }}">
-                    messages
-                </a>
+
             </div>
         </div>
     </div>
