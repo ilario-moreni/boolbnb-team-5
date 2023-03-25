@@ -8,7 +8,9 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
+
                         <form method="POST" action="{{ route('register') }}" id="form-register">
+
                             @csrf
 
                             <div class="mb-4 row">
@@ -18,7 +20,9 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                        value="{{ old('name') }}" autocomplete="name" autofocus>
+
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -34,7 +38,9 @@
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+
+                                        value="{{ old('surname') }}" autocomplete="surname" autofocus>
+
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -50,8 +56,10 @@
                                 <div class="col-md-6">
                                     <input id="date_of_birth" type="date"
                                         class="form-control @error('date_of_birth') is-invalid @enderror"
-                                        name="date_of_birth" value="{{ old('date_of_birth') }}" required
-                                        autocomplete="date_of_birth" autofocus>
+
+                                        name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="date_of_birth"
+                                        autofocus>
+
 
                                     @error('date_of_birth')
                                         <span class="invalid-feedback" role="alert">
@@ -85,6 +93,7 @@
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
+
                                     <div id="error" class=""></div>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
