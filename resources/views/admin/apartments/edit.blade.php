@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container-fluid">
-        <form action="{{ route('admin.apartments.update', ['apartment' => $apartment['slug']]) }}" method="POST"
+        <form class="form" action="{{ route('admin.apartments.update', ['apartment' => $apartment['slug']]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -9,39 +9,44 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Aggiungi title</label>
                     <input value="{{ old('title') ?? $apartment['title'] }}" type="text" class="form-control"
-                        id="" aria-describedby="" name="title">
+                    id="title" aria-describedby="" name="title">
+                    <div class="error d-none alert alert-danger mt-2"></div>
                     @error('title')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Numero stanze</label>
-                    <input value="{{ old('n_room') ?? $apartment['n_room'] }}" type="number" id=""
+                    <input value="{{ old('n_room') ?? $apartment['n_room'] }}" type="number" id="rooms"
                         class="form-control" name="n_room">
+                        <div class="error d-none alert alert-danger mt-2"></div>
                     @error('n_room')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Numero letti</label>
-                    <input value="{{ old('n_bed') ?? $apartment['n_bed'] }}" type="number" id=""
+                    <input value="{{ old('n_bed') ?? $apartment['n_bed'] }}" type="number" id="beds"
                         class="form-control" name="n_bed">
+                        <div class="error d-none alert alert-danger mt-2"></div>
                     @error('n_bed')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Numero bagni</label>
-                    <input value="{{ old('n_bathroom') ?? $apartment['n_bathroom'] }}" type="number" id=""
+                    <input value="{{ old('n_bathroom') ?? $apartment['n_bathroom'] }}" type="number" id="bathrooms"
                         class="form-control" name="n_bathroom">
+                        <div class="error d-none alert alert-danger mt-2"></div>
                     @error('n_bathroom')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Grandezza appartamento in mq</label>
-                    <input value="{{ old('mq') ?? $apartment['mq'] }}" type="number" id="" class="form-control"
+                    <input value="{{ old('mq') ?? $apartment['mq'] }}" type="number" id="mq" class="form-control"
                         name="mq">
+                        <div class="error d-none alert alert-danger mt-2"></div>
                     @error('mq')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
@@ -62,16 +67,18 @@
                 </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Latitudine</label>
-                    <input value="{{ old('latitude') ?? $apartment['latitude'] }}" type="number" id=""
+                    <input value="{{ old('latitude') ?? $apartment['latitude'] }}" type="number" id="latitude"
                         class="form-control" name="latitude">
+                        <div class="error d-none alert alert-danger mt-2"></div>
                     @error('latitude')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group my-3">
                     <label for="" class="form-label">Longitudine</label>
-                    <input value="{{ old('longitude') ?? $apartment['longitude'] }}" type="number" id=""
+                    <input value="{{ old('longitude') ?? $apartment['longitude'] }}" type="number" id="longitude"
                         class="form-control" name="longitude">
+                        <div class="error d-none alert alert-danger mt-2"></div>
                     @error('longitude')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
@@ -81,4 +88,5 @@
                 </div>
         </form>
     </div>
+    <script src="{{ asset('js/aptValidation.js') }}"></script>
 @endsection

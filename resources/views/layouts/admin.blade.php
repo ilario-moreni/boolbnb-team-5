@@ -64,14 +64,13 @@
                                     <i class="fa-solid fa-building fa-lg fa-fw"></i> Apartments
                                 </a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.index' ? 'bg-secondary' : '' }}" href="{{route('admin.categories.index') }}">
-                                    <i class="fa-solid fa-list fa-lg fa-fw"></i> Categories
+                            <li class="nav-item">
+                                <a class="nav-link text-dark f-20 {{ Route::currentRouteName() == 'admin.services.index' ? 'text-sun' : '' }}"
+                                    href="{{ route('admin.services.index') }}">
+                                    <i class="fa-solid fa-list fa-lg fa-fw"></i> Services
                                 </a>
-                            </li> --}}
+                            </li>
                         </ul>
-
-
                     </div>
                 </nav>
 
