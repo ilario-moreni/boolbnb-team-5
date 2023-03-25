@@ -49,7 +49,6 @@ class ApartmentController extends Controller
 
         $user = Auth::user();
 
-
         /* controllo e salvataggio dell'immagine */
         if ($request->has('image')) {
             $path = Storage::disk('public')->put('apartment_images', $request->image);
@@ -61,10 +60,11 @@ class ApartmentController extends Controller
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
 
-        $forma_data['user_id'] = $user->id;
+
 
         /* creazione riempimento e salvataggio istanza di apartment */
         $newApartment = new Apartment();
+        $newApartment->user_id = $user->id;
         $newApartment->fill($form_data);
         $newApartment->save();
 
