@@ -7,6 +7,7 @@ use App\Models\Apartment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -33,9 +34,9 @@ class ApartmentController extends Controller
     public function create()
     {
         /* indirizzamento alla pagina di creazione di un nuovo apartment */
-        return view('admin.apartments.create');
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -59,7 +60,6 @@ class ApartmentController extends Controller
 
             $form_data['image'] = $path;
         }
-
         /* generazione e assegnazione slug */
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
@@ -71,6 +71,9 @@ class ApartmentController extends Controller
         $newApartment->user_id = $user->id;
         $newApartment->fill($form_data);
         $newApartment->save();
+        if ($request->has('services')) {
+            $newApartment->services()->attach($request->services);
+        }
 
         /* reindirizzamento alla pagina index una volta completate le operazioni precedenti */
         return redirect()->route('admin.apartments.index')->with('message', 'Annuncio creato correttamente');
@@ -107,8 +110,8 @@ class ApartmentController extends Controller
         if ($user->id != $apartment->user_id) {
             return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
-
-        return view('admin.apartments.edit', compact('apartment'));
+        $services = Service::all();
+        return view('admin.apartments.edit', compact('apartment', 'services'));
     }
 
     /**
@@ -139,15 +142,14 @@ class ApartmentController extends Controller
             if ($apartment->image) {
                 Storage::delete($apartment->image);
             }
+
+            $path = Storage::disk('public')->put('apartment_images', $request->image);
+
+            $form_data['image'] = $path;
         }
 
-        $path = Storage::disk('public')->put('apartment_images', $request->image);
-
-        $form_data['image'] = $path;
-
-
         $apartment->update($form_data);
-
+        $apartment->services()->sync($request->services);
         return redirect()->route('admin.apartments.index')->with('message', 'Annuncio modificato correttamente');
     }
 
