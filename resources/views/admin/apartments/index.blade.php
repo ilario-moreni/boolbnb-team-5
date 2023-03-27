@@ -39,10 +39,15 @@
                     <tbody>
                         @forelse ($apartments as $apartment)
                             <tr>
-
-                                <td class="w-25"><img class="w-100" src="{{ asset('storage/' . $apartment->image) }}"
-                                        alt="">
-
+                                <td class="w-25">
+                                    @if ($apartment->image == null)
+                                        <img class="w-100"
+                                            src="https://www.finconsumo.com/wp-content/uploads/2022/07/placeholder-176.png"
+                                            alt="">
+                                    @else
+                                        <img class="w-100" src="{{ asset('storage/' . $apartment->image) }}"
+                                            alt="">
+                                    @endif
                                 </td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->created_at }}</td>
