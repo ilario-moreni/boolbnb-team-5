@@ -1,5 +1,15 @@
 @import '~bootstrap/scss/bootstrap';
 
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .logo-font {
     font-family: Lucida Handwriting;
     font-size: 40px;

@@ -24,7 +24,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body class="bg-img">
+<body class="bg-img h-100">
     <div id="app">
 
         <header class="navbar bg-light-transparent  flex-md-nowrap p-2 w-100">
