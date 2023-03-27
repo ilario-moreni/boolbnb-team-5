@@ -17,17 +17,17 @@ class MessageController extends Controller
      */
     public function index($_apartment_id)
     {
-        $_messages = Message::all();       
+        $_messages = Message::all();
 
         $messages = [];
         foreach ($_messages as $key => $_message) {
-            if ($_message->apartment_id == $_apartment_id){
+            if ($_message->apartment_id == $_apartment_id) {
                 array_push($messages, $_message);
             }
         };
-        
 
-        return view('admin.messages.index', compact('messages'));
+        $messages_count = count($messages);
+        return view('admin.messages.index', compact('messages', 'messages_count'));
     }
 
     /**

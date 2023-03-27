@@ -2,6 +2,13 @@
 @section('content')
     <div>
         <div class="container">
+            <div class="row">
+                <div class="col">
+                    {{ $messages_count }} nuovi messaggi.
+                </div>
+            </div>
+        </div>
+        <div class="container">
             @foreach ($messages as $message)
                 <div class="row ">
                     <div class="col-8 my-3">

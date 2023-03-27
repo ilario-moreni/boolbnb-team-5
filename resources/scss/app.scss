@@ -1,4 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
+@import './partials/index.scss';
 
 .logo-font {
     font-family: Lucida Handwriting;
@@ -37,4 +38,13 @@
     background-color: rgb(215, 176, 217) !important;
     box-shadow: 8px 8px rgb(156, 194, 217);
     transition: .3s;
+}
+
+/* centramento assoluto */
+
+.elem-center{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
 }
