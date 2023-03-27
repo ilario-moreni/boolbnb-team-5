@@ -31,41 +31,60 @@
                     <thead class="table-dark">
                         <th>Image</th>
                         <th>Title</th>
-                        <th>Created_at</th>
-                        <th>Updated_at</th>
+                        <th>Created</th>
+                        <th>Updated</th>
                         <th>Actions</th>
+                        <th>Inbox</th>
                     </thead>
                     <tbody>
                         @forelse ($apartments as $apartment)
                             <tr>
-                                <td><img class="w-25" src="{{ asset('storage/' . $apartment->image) }}" alt="">
+
+                                <td class="w-25"><img class="w-100" src="{{ asset('storage/' . $apartment->image) }}"
+                                        alt="">
+
                                 </td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->created_at }}</td>
                                 <td>{{ $apartment->updated_at }}</td>
                                 <td class="">
-                                    <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
-                                        title="Visualizza Appartamento" class="btn btn-sm btn-primary btn-square m-3">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.apartments.edit', $apartment->slug) }}"
-                                        title="Modifica Appartamento" class="btn btn-sm btn-warning btn-square mx-3">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a>
-                                    <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="btn btn-sm btn-square btn-danger m-3 confirm_delete_button"
-                                            data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
-                                            data-projectid="{{ $apartment->id }}">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-
+                                    <div class="d-flex">
+                                        <div>
+                                            <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
+                                                title="Visualizza Appartamento"
+                                                class="button-action btn btn-sm btn-primary  my-2">
+                                                <i class="fa-solid fa-eye elem-center"></i>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('admin.apartments.edit', $apartment->slug) }}"
+                                                title="Modifica Appartamento"
+                                                class="button-action btn btn-sm btn-warning text-white my-2 ms-2">
+                                                <i class="fa-solid fa-pencil elem-center"></i>
+                                            </a>
+                                        </div>
+                                        <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="button-action btn btn-sm  btn-danger my-2 ms-2"
+                                                data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
+                                                data-projectid="{{ $apartment->id }}">
+                                                <i class="fa-solid fa-trash-can elem-center"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="">
                                     <a href="{{ route('admin.messages', $apartment->id) }}"
-                                        class="btn btn-sm btn-success btn-square">
-                                        <i class="fa-regular fa-envelope"></i>
+                                        class="button-action btn btn-sm btn-success mt-2">
+                                        <i class="fa-regular fa-envelope elem-center"></i>
+                                        @if ($apartment->messages)
+                                            <div class='notification'>
+                                                {{ count($apartment->messages) }}
+                                            </div>
+                                        @else
+                                        @endif
                                     </a>
                                 </td>
                             </tr>
