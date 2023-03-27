@@ -13,7 +13,7 @@ form.addEventListener('submit', e => {
 
     if (valid === false) {
         e.preventDefault();
-        validateInputs();
+        validateInputs(e);
     }
     else {
         e.currentTarget.submit()
@@ -35,7 +35,7 @@ function setSuccess(element) {
     errorDisplay.classList.add('d-none');
 }
 
-function validateInputs(e) {
+function validateInputs(elem) {
     const titleValue = title.value.trim();
     const roomsValue = rooms.value.trim();
     const bedsValue = beds.value.trim();
@@ -43,50 +43,64 @@ function validateInputs(e) {
     const latitudeValue = latitude.value.trim();
     const longitudeValue = longitude.value.trim();
 
+    let isError = false;
+
     if (titleValue === '') {
-        setError(title, 'Titolo richiesto')
+        setError(title, 'Titolo richiesto');
+        isError = true;
     }
     else if (titleValue.length > 100) {
-        setError(title, 'Il titolo è troppo lungo - max 100 caratteri')
+        setError(title, 'Il titolo è troppo lungo - max 100 caratteri');
+        isError = true;
     }
     else {
         setSuccess(title);
     }
 
     if (roomsValue === '') {
-        setError(rooms, 'Numero stanze richiesto')
+        setError(rooms, 'Numero stanze richiesto');
+        isError = true;
     }
     else {
         setSuccess(rooms);
     }
 
     if (bedsValue === '') {
-        setError(beds, 'Numero di letti richiesto')
+        setError(beds, 'Numero di letti richiesto');
+        isError = true;
     }
     else {
         setSuccess(beds);
     }
 
     if (bathroomsValue === '') {
-        setError(bathrooms, 'Numero bagni richiesto')
+        setError(bathrooms, 'Numero bagni richiesto');
+        isError = true;
     }
     else {
         setSuccess(bathrooms);
     }
 
     if (latitudeValue === '') {
-        setError(latitude, 'Latitudine richiesta')
+        setError(latitude, 'Latitudine richiesta');
+        isError = true;
     }
     else {
         setSuccess(latitude);
     }
 
     if (longitudeValue === '') {
-        setError(longitude, 'Longitudine richiesta')
+        setError(longitude, 'Longitudine richiesta');
+        isError = true;
     }
     else {
         setSuccess(longitude);
     }
+    if (!isError) {
+        valid = true;
+    }
 
-    valid = true;
+    if (valid) {
+        elem.currentTarget.submit()
+    }
 }
