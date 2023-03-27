@@ -8,7 +8,8 @@
                 </div>
                 <div>
 
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Add Apartment</a>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Add
+                        Apartment</a>
 
                     @if (session('message'))
                         <div class="alert alert-success">
@@ -37,7 +38,8 @@
                     <tbody>
                         @forelse ($apartments as $apartment)
                             <tr>
-                                <td><img class="w-25" src="{{ asset('storage/'.$apartment->image) }}" alt=""></td>
+                                <td><img class="w-25" src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                                </td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->created_at }}</td>
                                 <td>{{ $apartment->updated_at }}</td>
@@ -53,7 +55,8 @@
                                     <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-square btn-danger m-3"
+                                        <button type="submit"
+                                            class="btn btn-sm btn-square btn-danger m-3 confirm_delete_button"
                                             data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
                                             data-projectid="{{ $apartment->id }}">
                                             <i class="fa-solid fa-trash-can"></i>
