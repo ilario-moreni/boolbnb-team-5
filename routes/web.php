@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\ApartmentController as ApartmentController;
+use App\Http\Controllers\Admin\MessageController as MessageController;
+use App\Http\Controllers\Admin\ServiceController as ServiceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function(){
+Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
+    Route::get('{id}/messages', [MessageController::class, 'index'])->name('messages');
+    Route::resource('services', ServiceController::class);
 });
 
 Route::middleware('auth')->group(function () {
@@ -31,4 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
+

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
@@ -14,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('admin.services.index', compact('services'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        // return view('admin.services.create');
     }
 
     /**
@@ -35,7 +37,9 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $newService = $request->validated();
+        // Service::create($newService);
+        // return redirect()->route('admin.services.index');
     }
 
     /**
@@ -46,7 +50,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return view('admin.services.show', compact('service'));
     }
 
     /**
@@ -57,7 +61,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        // return view('admin.services.edit', compact('service'));
     }
 
     /**
@@ -69,7 +73,9 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        // $newService = $request->validated();
+        // $service->update($newService);
+        // return redirect()->route('admin.services.index');
     }
 
     /**
@@ -80,6 +86,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        // $service->delete();
+        // return redirect()->route('admin.services.index');
     }
 }
