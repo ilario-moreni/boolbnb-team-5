@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card bg-light-transparent">
+                    <div class="card-header">{{ __('Register') }}</div>
 
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card bg-light-transparent">
-                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form novalidate method="POST" action="{{ route('register') }}" id="form-register">
@@ -15,18 +15,21 @@
                         <div class="mb-4 row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <div class="col-md-6">
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                       
-                        <div class="mb-4 row">
+
                             <div class="mb-4 row">
                                 <label for="surname"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
@@ -34,7 +37,6 @@
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-
                                         value="{{ old('surname') }}" autocomplete="surname" autofocus>
 
 
@@ -52,7 +54,6 @@
                                 <div class="col-md-6">
                                     <input id="date_of_birth" type="date"
                                         class="form-control @error('date_of_birth') is-invalid @enderror"
-
                                         name="date_of_birth" value="{{ old('date_of_birth') }}" autocomplete="date_of_birth"
                                         autofocus>
 
@@ -115,13 +116,13 @@
                                 </div>
                             </div>
 
-                        <div class="mb-4 row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn button-color text-white">
-                                    {{ __('Register') }}
-                                </button>
+                            <div class="mb-4 row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn button-color text-white">
+                                        {{ __('Register') }}
+                                    </button>
 
-                            </div>
+                                </div>
                         </form>
                     </div>
                 </div>

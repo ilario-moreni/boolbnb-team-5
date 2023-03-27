@@ -1,0 +1,18 @@
+.button-action{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.notification{
+    position: absolute;
+    background-color: red;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-weight: 600;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+}
