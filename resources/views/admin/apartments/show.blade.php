@@ -3,8 +3,12 @@
     <div class="container-fluid my-5">
         <div class="row bg-light-transparent">
             <div class="col-8 p-0">
-                {{-- <img class="w-100" src="{{ asset('storage/'.$apartment->image) }}" alt="{{ $apartment->title }}"> --}}
-                <img class="w-100" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
+                @if ($apartment->image == null)
+                    <img class="w-100" src="https://www.finconsumo.com/wp-content/uploads/2022/07/placeholder-176.png"
+                        alt="">
+                @else
+                    <img class="w-100" src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                @endif
             </div>
             <div class="col-4">
                 <h1>{{ $apartment->title }}</h1>
