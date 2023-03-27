@@ -5,7 +5,7 @@
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="form-group my-3">
+            <div class="form-group mt-5 p-5 bg-light-transparent">
                 <div class="mb-3">
                     <label for="" class="form-label">Aggiungi title</label>
                     <input value="{{ old('title') ?? $apartment['title'] }}" type="text" class="form-control"
@@ -84,7 +84,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Salva</button>
+                    <button type="submit" class="btn button-color text-white">Salva</button>
                 </div>
         </form>
     </div>

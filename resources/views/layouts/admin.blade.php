@@ -24,19 +24,19 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-img">
     <div id="app">
 
-        <header class="navbar bg-* sticky-top flex-md-nowrap p-2 w-100 position-absolute">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo-font text-white" href="/">BoolBnB</a>
+        <header class="navbar bg-light-transparent  flex-md-nowrap p-2 w-100">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo-font" href="/">BoolBnB</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                 data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {{-- <input class="form-control form-control-dark w-100" type="text" Placeholder="Search"> --}}
+            <input class="form-control form-control-dark w-100" type="text" Placeholder="Search">
             <div class="navbar nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <a class="nav-link text-dark" href="{{ route('logout') }}"
                         onclick="event.preventDefault()
                     document.getElementById('logout-form').submit()">
                         {{ __('Logout') }}
@@ -49,17 +49,17 @@
         </header>
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse gardient-blue-white">
-                    <div class="position-sticky pt-100">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse bg-light-transparent">
+                    <div class="position-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.dashboard' ? 'text-sun' : '' }}"
+                                <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.dashboard' ? 'selected' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark f-20 {{ Route::currentRouteName() == 'admin.apartments.index' ? 'text-sun' : '' }}"
+                                <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.apartments.index' ? 'selected' : '' }}"
                                     href="{{ route('admin.apartments.index') }}">
                                     <i class="fa-solid fa-building fa-lg fa-fw"></i> Apartments
                                 </a>
