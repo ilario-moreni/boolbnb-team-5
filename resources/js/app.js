@@ -7,14 +7,14 @@ import.meta.glob(["../img/**"]);
 
 //Recupero tutti i pulsanti con la classe.
 const deleteButtons = document.querySelectorAll(
-    '.confirm-delete-button[type="submit"]'
+    '.confirm_delete_button[type="submit"]'
 );
 
 deleteButtons.forEach((button) => {
     button.addEventListener("click", function (event) {
         //Evito che il record sia eliminato subito dal database.
         event.preventDefault();
-        //Recupero il titolo del comic.
+        //Recupero il titolo dell'appartamento.
         const comicTitle = button.getAttribute("data-title");
         //Recupero la modale creata attraverso l'id.
         const modal = document.getElementById("delete-project-modal");
@@ -22,7 +22,7 @@ deleteButtons.forEach((button) => {
         const bootstrapModal = new bootstrap.Modal(modal);
         //Mostro la modale.
         bootstrapModal.show();
-        //Mostro il titolo del comic nella modale.
+        //Mostro il titolo dell'appartamento nella modale.
         const modalContent = modal.querySelector("#modal-item-title");
         modalContent.textContent = comicTitle;
         //Recupero il pulsante di cancellazione del record;

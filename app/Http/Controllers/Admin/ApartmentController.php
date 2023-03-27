@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ApartmentController extends Controller
 {
@@ -53,6 +54,9 @@ class ApartmentController extends Controller
         $user = Auth::user();
 
         /* controllo e salvataggio dell'immagine */
+        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=18&streetName=via,giuseppe,verdi&municipality=Italia&postalCode=20121&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+        $response = $res->json();
+        dd($response);
         if ($request->has('image')) {
             $path = Storage::disk('public')->put('apartment_images', $request->image);
 

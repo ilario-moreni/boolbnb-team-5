@@ -12,12 +12,12 @@
                         Apartment</a>
 
                     @if (session('message'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success mt-5">
                             {{ session('message') }}
                         </div>
                     @endif
                     @if (session('warning'))
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger mt-5">
                             {{ session('warning') }}
                         </div>
                     @endif
@@ -39,8 +39,10 @@
                     <tbody>
                         @forelse ($apartments as $apartment)
                             <tr>
+
                                 <td class="w-25"><img class="w-100" src="{{ asset('storage/' . $apartment->image) }}"
                                         alt="">
+
                                 </td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->created_at }}</td>
