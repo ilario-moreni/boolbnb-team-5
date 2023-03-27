@@ -67,7 +67,8 @@
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="button-action btn btn-sm  btn-danger my-2 ms-2"
+                                            <button type="submit"
+                                                class="button-action btn btn-sm  btn-danger my-2 ms-2 confirm_delete_button"
                                                 data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
                                                 data-projectid="{{ $apartment->id }}">
                                                 <i class="fa-solid fa-trash-can elem-center"></i>
