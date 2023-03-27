@@ -11,12 +11,12 @@
                     <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Add Apartment</a>
 
                     @if (session('message'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success mt-5">
                             {{ session('message') }}
                         </div>
                     @endif
                     @if (session('warning'))
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger mt-5">
                             {{ session('warning') }}
                         </div>
                     @endif

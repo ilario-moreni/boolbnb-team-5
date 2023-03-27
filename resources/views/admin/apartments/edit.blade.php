@@ -54,7 +54,7 @@
                 <div class="form-group my-3">
                     <label class="control-label">Copertina</label>
                     <div>
-                        <img src="{{ asset('storage/' . $apartment->image) }}" class="w-50">
+                        <img src="{{ asset('storage/' . $apartment->image) }}" class="w-50 my-3">
                     </div>
                     <input type="file" name="image" id="image"
                         class="form-control
