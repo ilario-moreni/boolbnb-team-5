@@ -4,7 +4,7 @@
         <div class="row bg-light-transparent">
             <div class="col-8 p-0">
                 {{-- <img class="w-100" src="{{ asset('storage/'.$apartment->image) }}" alt="{{ $apartment->title }}"> --}}
-                <img class="w-100" src="{{ asset('storage/'.$apartment->image) }}" alt="{{ $apartment->title }}">
+                <img class="w-100" src="{{ asset('storage/' . $apartment->image) }}" alt="{{ $apartment->title }}">
             </div>
             <div class="col-4">
                 <h1>{{ $apartment->title }}</h1>
@@ -25,6 +25,15 @@
                     <div>
                         <i class="fa-solid fa-kaaba"></i>
                         <span><strong>m&#178;: </strong>{{ $apartment->mq }}</span>
+                    </div>
+                    <div>
+                        <span><strong>Servizi:</strong></span>
+                        @forelse ($apartment->services as $item)
+                            {{ $loop->first ? '' : '' }}
+                            <div> <i class="{{ $item->class_icon }} me-2"></i>{{ $item->name }}</div>
+                        @empty
+                            <div>nessun servizio</div>
+                        @endforelse
                     </div>
                 </div>
                 <hr class="w-25 border-top-3">
