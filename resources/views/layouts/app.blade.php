@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div id="app" class="bg-img vh-100">
+    <div id="app" class="bg-img min-100vh">
 
 
         <nav class="navbar navbar-expand-md navbar-light bg-light-transparent shadow-sm">

@@ -17,8 +17,8 @@ body {
 }
 
 .gardient-blue-white {
-    background: rgb(50,221,231);
-    background: linear-gradient(214deg, rgba(50,221,231,1) 0%, rgba(42,165,226,1) 100%);
+    background: rgb(50, 221, 231);
+    background: linear-gradient(214deg, rgba(50, 221, 231, 1) 0%, rgba(42, 165, 226, 1) 100%);
 }
 
 .f-20 {
@@ -27,7 +27,7 @@ body {
 
 .selected {
     color: rgba(255, 255, 255, 0.5);
-    background-color:rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .bg-img {
@@ -52,9 +52,13 @@ body {
 
 /* centramento assoluto */
 
-.elem-center{
+.elem-center {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
+}
+
+.min-100vh {
+    min-height: 100vh;
 }

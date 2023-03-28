@@ -5,7 +5,7 @@
             @csrf
             <div class="form-group my-3">
                 <div class="mb-3">
-                    <label for="" class="form-label">Aggiungi title</label>
+                    <label for="" class="form-label">Aggiungi titolo</label>
                     <input type="text" class="form-control" id="title" aria-describedby="" name="title">
                     <div class="error d-none alert alert-danger mt-2"></div>
                     @error('title')
@@ -64,22 +64,32 @@
                         </div>
                     @endforeach
                 </div>
+                
                 <div class="form-group my-3">
-                    <label for="" class="form-label">Latitudine</label>
-                    <input type="number" id="latitude" class="form-control" name="latitude">
+                    <label for="" class="form-label">Inserisci Via</label>
+                    <input type="text" id="address" class="form-control" name="address">
                     <div class="error d-none alert alert-danger mt-2"></div>
-                    @error('latitude')
+                    @error('address')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group my-3">
-                    <label for="" class="form-label">Longitudine</label>
-                    <input type="number" id="longitude" class="form-control" name="longitude">
+                    <label for="" class="form-label">N. Civico</label>
+                    <input type="number" id="n_house" class="form-control" name="n_house">
                     <div class="error d-none alert alert-danger mt-2"></div>
-                    @error('longitude')
+                    @error('address')
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="form-group my-3">
+                    <label for="" class="form-label">Cap</label>
+                    <input type="number" id="cap" class="form-control" name="cap">
+                    <div class="error d-none alert alert-danger mt-2"></div>
+                    @error('address')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+                
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Salva</button>
                 </div>

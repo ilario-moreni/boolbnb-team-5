@@ -50,18 +50,23 @@ class ApartmentController extends Controller
 
         /* recupero dati validati */
         $form_data = $request->validated();
-
         $user = Auth::user();
+        $address = str_replace(' ', ',', $request->address);
+        $n_house = $request->n_house;
+        $cap = $request->cap;
 
         /* controllo e salvataggio dell'immagine */
-        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=18&streetName=via,giuseppe,verdi&municipality=Italia&postalCode=20121&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=" . $n_house . "&streetName=" . $address . "i&municipality=Italia&postalCode=" . $cap . "&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
         $response = $res->json();
-        dd($response);
+        $latitude = strval($response['results'][0]['position']['lat']);
+        $longitude = strval($response['results'][0]['position']['lon']);
+
         if ($request->has('image')) {
             $path = Storage::disk('public')->put('apartment_images', $request->image);
 
             $form_data['image'] = $path;
         }
+
         /* generazione e assegnazione slug */
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
@@ -71,6 +76,8 @@ class ApartmentController extends Controller
         /* creazione riempimento e salvataggio istanza di apartment */
         $newApartment = new Apartment();
         $newApartment->user_id = $user->id;
+        $newApartment->latitude = $latitude;
+        $newApartment->longitude = $longitude;
         $newApartment->fill($form_data);
         $newApartment->save();
         if ($request->has('services')) {
@@ -150,6 +157,15 @@ class ApartmentController extends Controller
             $form_data['image'] = $path;
         }
 
+        $address = str_replace(' ', ',', $request->address);
+        $n_house = $request->n_house;
+        $cap = $request->cap;
+        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=" . $n_house . "&streetName=" . $address . "i&municipality=Italia&postalCode=" . $cap . "&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+        $response = $res->json();
+        $latitude = strval($response['results'][0]['position']['lat']);
+        $longitude = strval($response['results'][0]['position']['lon']);
+        $apartment->latitude = $latitude;
+        $apartment->longitude = $longitude;
         $apartment->update($form_data);
         $apartment->services()->sync($request->services);
         return redirect()->route('admin.apartments.index')->with('message', 'Annuncio modificato correttamente');

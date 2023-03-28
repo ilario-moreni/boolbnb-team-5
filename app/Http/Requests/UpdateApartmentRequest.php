@@ -32,8 +32,8 @@ class UpdateApartmentRequest extends FormRequest
             'n_bathroom' => ['required'],
             'mq' => ['nullable'],
             'image' => ['nullable', 'image'],
-            'latitude' => ['required'],
-            'longitude' => ['required'],
+            'latitude' => ['nullable'],
+            'longitude' => ['nullable'],
             'services' => ['nullable', 'exists:services,id'],
         ];
     }
