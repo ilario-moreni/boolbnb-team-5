@@ -12,6 +12,7 @@
             </div>
             <div class="col-4">
                 <h1>{{ $apartment->title }}</h1>
+                <div><strong>Indirizzo:</strong> {{$address['street']}}, {{$address['postalCode']}}, {{$address['countrySubdivision']}}</div>
                 <hr class="w-25 border-top-3">
                 <div class="d-flex flex-column gap-2">
                     <div>
@@ -41,9 +42,7 @@
                     </div>
                 </div>
                 <hr class="w-25 border-top-3">
-
-                {{ $apartment->latitude }}
-                {{ $apartment->longitude }}
+                
 
             </div>
         </div>
