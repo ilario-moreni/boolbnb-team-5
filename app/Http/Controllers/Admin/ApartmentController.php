@@ -101,7 +101,15 @@ class ApartmentController extends Controller
         if ($user->id != $apartment->user_id) {
             return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
-        return view('admin.apartments.show', compact('apartment'));
+        $latitude = $apartment->latitude;
+        $longitude = $apartment->longitude;
+
+        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/reverseGeocode/crossStreet/" . $latitude . "%2C" . $longitude . ".json?limit=1&spatialKeys=false&radius=1000&allowFreeformNewLine=false&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+        $response = $res->json();
+
+        $address = $response['addresses'][0]['address'];
+
+        return view('admin.apartments.show', compact('apartment', 'address'));
         /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
     }
 
