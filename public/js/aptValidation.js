@@ -5,8 +5,8 @@ const title = document.getElementById('title');
 const rooms = document.getElementById('rooms');
 const beds = document.getElementById('beds');
 const bathrooms = document.getElementById('bathrooms');
-const latitude = document.getElementById('latitude');
-const longitude = document.getElementById('longitude');
+/* const latitude = document.getElementById('latitude');
+const longitude = document.getElementById('longitude'); */
 let valid = false;
 
 form.addEventListener('submit', e => {
@@ -40,8 +40,8 @@ function validateInputs(elem) {
     const roomsValue = rooms.value.trim();
     const bedsValue = beds.value.trim();
     const bathroomsValue = bathrooms.value.trim();
-    const latitudeValue = latitude.value.trim();
-    const longitudeValue = longitude.value.trim();
+    /* const latitudeValue = latitude.value.trim();
+    const longitudeValue = longitude.value.trim(); */
 
     let isError = false;
 
@@ -81,21 +81,21 @@ function validateInputs(elem) {
         setSuccess(bathrooms);
     }
 
-    if (latitudeValue === '') {
-        setError(latitude, 'Latitudine richiesta');
-        isError = true;
-    }
-    else {
-        setSuccess(latitude);
-    }
-
-    if (longitudeValue === '') {
-        setError(longitude, 'Longitudine richiesta');
-        isError = true;
-    }
-    else {
-        setSuccess(longitude);
-    }
+    /*  if (latitudeValue === '') {
+         setError(latitude, 'Latitudine richiesta');
+         isError = true;
+     }
+     else {
+         setSuccess(latitude);
+     }
+ 
+     if (longitudeValue === '') {
+         setError(longitude, 'Longitudine richiesta');
+         isError = true;
+     }
+     else {
+         setSuccess(longitude);
+     } */
     if (!isError) {
         valid = true;
     }

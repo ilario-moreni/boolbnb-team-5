@@ -13,7 +13,7 @@
                         @csrf
 
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
 
                                 <div class="col-md-6">
@@ -32,7 +32,7 @@
 
                             <div class="mb-4 row">
                                 <label for="surname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
@@ -49,7 +49,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="date_of_birth"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Date of birth') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Data Di Nascita') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="date_of_birth" type="date"
@@ -67,7 +67,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo Email') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -102,7 +102,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -119,7 +119,7 @@
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn button-color text-white">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
 
                                 </div>

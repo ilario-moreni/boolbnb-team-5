@@ -61,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.apartments.index' ? 'selected' : '' }}"
                                     href="{{ route('admin.apartments.index') }}">
-                                    <i class="fa-solid fa-building fa-lg fa-fw"></i> Apartments
+                                    <i class="fa-solid fa-building fa-lg fa-fw"></i> Appartamenti
                                 </a>
                             </li>
                             {{-- <li class="nav-item">

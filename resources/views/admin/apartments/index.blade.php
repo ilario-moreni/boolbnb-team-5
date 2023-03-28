@@ -4,12 +4,11 @@
         <div class="row">
             <div class="col-12 my-5">
                 <div class="d-flex justify-content-between">
-                    <h2>Apartments List</h2>
+                    <h2>Lista Appartamenti</h2>
                 </div>
                 <div>
 
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Add
-                        Apartment</a>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Aggiungi Appartamenti</a>
 
                     @if (session('message'))
                         <div class="alert alert-success mt-5">
@@ -29,12 +28,12 @@
             <div class="col-12">
                 <table class="table bg-light-transparent ">
                     <thead class="table-dark">
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Created</th>
-                        <th>Updated</th>
-                        <th>Actions</th>
-                        <th>Inbox</th>
+                        <th>Immagine</th>
+                        <th>Titolo</th>
+                        <th>Creato</th>
+                        <th>Modificato</th>
+                        <th>Azioni</th>
+                        <th>Messaggi</th>
                     </thead>
                     <tbody>
                         @forelse ($apartments as $apartment)
@@ -100,7 +99,7 @@
                                     <div class="col-lg-8 col-md-10 col-sm-12">
                                         <div class="alert alert-primary text-center" role="alert">
                                             <h4 class="alert-heading mb-4">Il database dei tuoi annunci è vuoto.</h4>
-                                            <p class="lead">Clicca sul pulsante "Add Apartment" per crearne uno.</p>
+                                            <p class="lead">Clicca sul pulsante "Aggiungi Appartamento" per crearne uno.</p>
                                         </div>
                                     </div>
                                 </div>
