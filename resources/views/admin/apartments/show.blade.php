@@ -31,6 +31,7 @@
                         <i class="fa-solid fa-kaaba"></i>
                         <span><strong>m&#178;: </strong>{{ $apartment->mq }}</span>
                     </div>
+                    <hr class="w-25 border-top-3">
                     <div>
                         <span><strong>Servizi:</strong></span>
                         @forelse ($apartment->services as $item)
@@ -41,9 +42,6 @@
                         @endforelse
                     </div>
                 </div>
-                <hr class="w-25 border-top-3">
-                
-
             </div>
         </div>
     </div>
