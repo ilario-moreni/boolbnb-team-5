@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\ApartmentController as ApartmentController;
 use App\Http\Controllers\Admin\MessageController as MessageController;
 use App\Http\Controllers\Admin\ServiceController as ServiceController;
+use Illuminate\Http\Request;
+
 
 
 /*
@@ -20,7 +22,45 @@ use App\Http\Controllers\Admin\ServiceController as ServiceController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $gateway = new \Braintree\Gateway([
+        'environment' => config('services.braintree.environment'),
+        'merchantId' => config('services.braintree.merchantId'),
+        'publicKey' => config('services.braintree.publicKey'),
+        'privateKey' => config('services.braintree.privateKey')
+    ]);
+    $token = $gateway->ClientToken()->generate();
+    return view('welcome', ['token' => $token]);
+});
+
+Route::post('/checkout', function (Request $request) {
+    $gateway = new \Braintree\Gateway([
+        'environment' => config('services.braintree.environment'),
+        'merchantId' => config('services.braintree.merchantId'),
+        'publicKey' => config('services.braintree.publicKey'),
+        'privateKey' => config('services.braintree.privateKey')
+    ]);
+    $amount = $request["amount"];
+    $nonce = $request["payment_method_nonce"];
+
+    $result = $gateway->transaction()->sale([
+        'amount' => $amount,
+        'paymentMethodNonce' => $nonce,
+        'options' => [
+            'submitForSettlement' => true
+        ]
+    ]);
+
+    if ($result->success) {
+        $transaction = $result->transaction;
+        return back()->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
+    } else {
+        $errorString = "";
+
+        foreach ($result->errors->deepAll() as $error) {
+            $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+        }
+        return back()->withErrors('An error occurred with the message:' . $result->message);
+    }
 });
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
@@ -38,4 +78,3 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__ . '/auth.php';
-
