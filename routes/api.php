@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApartmentController as ApartmentController;
+use App\Http\Controllers\Api\ApartmentController as ApartmentController;
 
 /*
 |--------------------------------------------------------------------------
