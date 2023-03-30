@@ -8,23 +8,25 @@ use App\Models\Apartment;
 
 class ApartmentController extends Controller
 {
-    public function index(Request $request){
-        $apartments = Apartment::with('services', 'sponsorships')->paginate(8);
+    public function index()
+    {
+        $apartments = Apartment::all();
         return response()->json([
             'success' => true,
             'apartments' => $apartments
         ]);
     }
 
-    public function show($slug){
+    public function show($slug)
+    {
         $apartment = Apartment::with('services', 'sponsorships')->where('slug', $slug)->first();
 
-        if($apartment){
+        if ($apartment) {
             return response()->json([
                 'success' => true,
                 'apartment' => $apartment,
             ]);
-        }else{
+        } else {
             return response()->json([
                 'success' => false,
                 'error' => 'Nessun appartamento trovato',
