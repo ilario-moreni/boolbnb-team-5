@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\ApartmentController as ApartmentController;
 use App\Http\Controllers\Admin\MessageController as MessageController;
 use App\Http\Controllers\Admin\ServiceController as ServiceController;
+use App\Http\Controllers\Admin\SponsorshipController as SponsorshipController;
 use Illuminate\Http\Request;
+
 
 
 
@@ -76,5 +78,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
 
 require __DIR__ . '/auth.php';

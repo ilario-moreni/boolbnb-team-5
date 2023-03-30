@@ -50,6 +50,24 @@ body {
     transition: .3s;
 }
 
+.bg-azure {
+    background-color: #cceff4;
+    border: 1px solid #cceff4;
+    box-shadow: 10px 10px 10px gray;
+}
+
+.bg-blue {
+    background-color: rgb(204 221 255);
+    border: 1px solid rgb(204 221 255);
+    box-shadow: 10px 10px 10px gray;
+}
+
+.bg-pink {
+    background-color: rgb(231 211 246);
+    border: 1px solid rgb(231 211 246);
+    box-shadow: 10px 10px 10px gray;
+}
+
 /* centramento assoluto */
 
 .elem-center {
