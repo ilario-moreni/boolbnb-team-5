@@ -8,7 +8,8 @@
                 </div>
                 <div>
 
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Aggiungi Appartamenti</a>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Aggiungi
+                        Appartamenti</a>
 
                     @if (session('message'))
                         <div class="alert alert-success mt-5">
@@ -67,6 +68,13 @@
                                                 <i class="fa-solid fa-pencil elem-center"></i>
                                             </a>
                                         </div>
+                                        <div>
+                                            <a href="{{ route('admin.sponsorships.index', ['apartmentSlug' => $apartment->slug]) }}"
+                                                title="Sponsorizza Appartamento"
+                                                class="button-action btn btn-sm btn-success text-white my-2 ms-2">
+                                                <i class="fa-solid fa-crown elem-center"></i>
+                                            </a>
+                                        </div>
                                         <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}"
                                             method="POST">
                                             @csrf
@@ -99,7 +107,8 @@
                                     <div class="col-lg-8 col-md-10 col-sm-12">
                                         <div class="alert alert-primary text-center" role="alert">
                                             <h4 class="alert-heading mb-4">Il database dei tuoi annunci è vuoto.</h4>
-                                            <p class="lead">Clicca sul pulsante "Aggiungi Appartamento" per crearne uno.</p>
+                                            <p class="lead">Clicca sul pulsante "Aggiungi Appartamento" per crearne uno.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

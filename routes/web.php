@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ApartmentController as ApartmentController;
 use App\Http\Controllers\Admin\MessageController as MessageController;
 use App\Http\Controllers\Admin\ServiceController as ServiceController;
 use App\Http\Controllers\Admin\SponsorshipController as SponsorshipController;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 
 
@@ -24,52 +25,26 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    $gateway = new \Braintree\Gateway([
-        'environment' => config('services.braintree.environment'),
-        'merchantId' => config('services.braintree.merchantId'),
-        'publicKey' => config('services.braintree.publicKey'),
-        'privateKey' => config('services.braintree.privateKey')
-    ]);
-    $token = $gateway->ClientToken()->generate();
-    return view('welcome', ['token' => $token]);
+    // $gateway = new \Braintree\Gateway([
+    //     'environment' => config('services.braintree.environment'),
+    //     'merchantId' => config('services.braintree.merchantId'),
+    //     'publicKey' => config('services.braintree.publicKey'),
+    //     'privateKey' => config('services.braintree.privateKey')
+    // ]);
+    // $token = $gateway->ClientToken()->generate();
+    return view('welcome');
 });
 
-Route::post('/checkout', function (Request $request) {
-    $gateway = new \Braintree\Gateway([
-        'environment' => config('services.braintree.environment'),
-        'merchantId' => config('services.braintree.merchantId'),
-        'publicKey' => config('services.braintree.publicKey'),
-        'privateKey' => config('services.braintree.privateKey')
-    ]);
-    $amount = $request["amount"];
-    $nonce = $request["payment_method_nonce"];
-
-    $result = $gateway->transaction()->sale([
-        'amount' => $amount,
-        'paymentMethodNonce' => $nonce,
-        'options' => [
-            'submitForSettlement' => true
-        ]
-    ]);
-
-    if ($result->success) {
-        $transaction = $result->transaction;
-        return back()->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
-    } else {
-        $errorString = "";
-
-        foreach ($result->errors->deepAll() as $error) {
-            $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-        }
-        return back()->withErrors('An error occurred with the message:' . $result->message);
-    }
-});
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
     Route::get('{id}/messages', [MessageController::class, 'index'])->name('messages');
     Route::resource('services', ServiceController::class);
+    // Route::resource('sponsorships', SponsorshipController::class)->parameters(['apartments' => 'apartment:slug']);
+    Route::get('/sponsorships/{apartmentSlug}', [SponsorshipController::class, 'index'])->name('sponsorships.index');
+    Route::get('/sponsorships/{apartmentSlug}/{id}', [SponsorshipController::class, 'show'])->name('sponsorships.show');
+    Route::post('/sponsorships/{apartmentSlug}/{id}/payment', [SponsorshipController::class, 'processPayment'])->name('sponsorships.process_payment');
 });
 
 Route::middleware('auth')->group(function () {
@@ -78,6 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/sponsorships', [SponsorshipController::class, 'index'])->name('sponsorships');
 
 require __DIR__ . '/auth.php';

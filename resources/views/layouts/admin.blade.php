@@ -65,10 +65,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark f-20 {{ Route::currentRouteName() == 'admin.sponsorships.index' ? 'selected' : '' }}"
-                                    href="{{ route('sponsorships') }}">
+                                {{-- <a class="nav-link text-dark f-20 {{ Route::currentRouteName() == 'admin.sponsorships.index' ? 'selected' : '' }}"
+                                    href="{{ route('admin.sponsorships.index') }}">
                                     <i class="fa-solid fa-crown px-1"></i> Sponsorships
-                                </a>
+                                </a> --}}
                             </li>
                         </ul>
                     </div>

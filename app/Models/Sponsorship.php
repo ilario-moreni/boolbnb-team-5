@@ -9,6 +9,8 @@ class Sponsorship extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function apartments()
     {
         return $this->belongsToMany(Apartment::class);
