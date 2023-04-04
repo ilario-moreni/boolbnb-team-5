@@ -19,12 +19,14 @@ class MessageController extends Controller
         $newMessage->surname = $form_data->surname;
         $newMessage->email = $form_data->email;
         $newMessage->description = $form_data->message; */
+        $newMessage->apartment_id = $request->apartment_id;
         $newMessage->fill($form_data);
         $newMessage->save();
 
         return response()->json([
             'success' => true,
-            'message' => 'messaggio inviato con successo'
+            'message' => 'messaggio inviato con successo',
+            'apartment_id' => $form_data
         ]);
     }
 }
