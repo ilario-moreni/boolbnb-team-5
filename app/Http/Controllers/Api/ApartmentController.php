@@ -55,20 +55,25 @@ class ApartmentController extends Controller
         foreach ($resultApartments as $apartment) {
             array_push($idarray, $apartment->id);
         }
-        $idapartment = Apartment::whereIn('id', $idarray)->whereHas('services', function ($q) use ($services) {
-            $q->whereIn('services.id', $services);
-        })
-            ->withCount(['services' => function ($q) use ($services) {
+        if ($services === []) {
+            $idapartment = Apartment::whereIn('id', $idarray)->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->get();
+            return response()->json([
+                'success' => true,
+                'prova' => $idapartment
+            ]);
+        } else {
+            $idapartment = Apartment::whereIn('id', $idarray)->whereHas('services', function ($q) use ($services) {
                 $q->whereIn('services.id', $services);
-            }])
-            ->having('services_count', '=', count($services))->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->get();
-
-        return response()->json([
-            'success' => true,
-            'prova' => $idapartment,
-            'prova2' => $services,
-            'prova3' => $street
-        ]);
+            })
+                ->withCount(['services' => function ($q) use ($services) {
+                    $q->whereIn('services.id', $services);
+                }])
+                ->having('services_count', '=', count($services))->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->get();
+            return response()->json([
+                'success' => true,
+                'prova' => $idapartment
+            ]);
+        }
     }
 
 
@@ -109,4 +114,10 @@ class ApartmentController extends Controller
         }
         return $apartmentFilter;
     }
+    /* $r_ange = '';
+        if ($b != 'null' || $b != '') {
+            $r_ange = (intval($b) * 1000);
+        } else {
+            $r_ange = '20000';
+        } */
 }
