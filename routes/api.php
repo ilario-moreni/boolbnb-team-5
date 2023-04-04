@@ -17,6 +17,8 @@ use App\Http\Controllers\Api\ServiceController as ServiceController;
 
 Route::post('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
+Route::post('/apartments/filter/', [ApartmentController::class, 'filter']);
+
 Route::get('/services', [ServiceController::class, 'index']);
 
 

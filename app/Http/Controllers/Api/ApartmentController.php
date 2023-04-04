@@ -6,20 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Eloquent\Builder;
 
 class ApartmentController extends Controller
 {
+
     public function index(Request $request)
     {
-
-        $apartments = Apartment::with('services', 'sponsorships')->paginate();
         $street = $request->street;
 
         $resultApartments = $this->getRadiusCenter($street);
 
         return response()->json([
             'success' => true,
-            'apartments' => $apartments,
             'filteredList' => $resultApartments
 
         ]);
@@ -41,6 +40,37 @@ class ApartmentController extends Controller
             ]);
         }
     }
+
+    public function filter(Request $filter)
+    {
+
+        $street = $filter->street;
+        /* $range = $filter->range; */
+        $rooms = strval($filter->n_rooms);
+        $beds = strval($filter->n_beds);
+        $bathrooms = strval($filter->n_bathrooms);
+        $services = $filter->services;
+        $idarray = [];
+        $resultApartments = $this->getRadiusCenter($street);
+        foreach ($resultApartments as $apartment) {
+            array_push($idarray, $apartment->id);
+        }
+        $idapartment = Apartment::whereIn('id', $idarray)->whereHas('services', function ($q) use ($services) {
+            $q->whereIn('services.id', $services);
+        })
+            ->withCount(['services' => function ($q) use ($services) {
+                $q->whereIn('services.id', $services);
+            }])
+            ->having('services_count', '=', count($services))->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->get();
+
+        return response()->json([
+            'success' => true,
+            'prova' => $idapartment,
+            'prova2' => $services,
+            'prova3' => $street
+        ]);
+    }
+
 
     public function getRadiusCenter($a)
     {
@@ -71,9 +101,9 @@ class ApartmentController extends Controller
         $apartmentFilter = [];
         foreach ($positionFilter['results'] as  $position) {
 
-            $pippo = $position['position']['lon'];
-            $paperino = $position['position']['lat'];
-            $singleFilter = Apartment::where('longitude', $pippo)->where('latitude', $paperino)->first();
+            $pos_lon = $position['position']['lon'];
+            $pos_lat = $position['position']['lat'];
+            $singleFilter = Apartment::where('longitude', $pos_lon)->where('latitude', $pos_lat)->first();
 
             array_push($apartmentFilter, $singleFilter);
         }
