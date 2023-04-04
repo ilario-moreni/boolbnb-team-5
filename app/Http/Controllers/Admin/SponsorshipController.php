@@ -106,9 +106,9 @@ class SponsorshipController extends Controller
         //
     }
 
-    public function processPayment(Request $request, $id)
+    public function processPayment(Request $request)
     {
-        // 4111 1111 1111 1111
+
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -117,10 +117,9 @@ class SponsorshipController extends Controller
         ]);
 
         $sponsorship = Sponsorship::findOrFail($request->id);
-
+        $apartment = Apartment::where('slug', $request->apartmentSlug)->firstOrFail();
         $amount = $sponsorship->price;
         $nonce = $request->input('payment_method_nonce');
-
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
@@ -132,7 +131,17 @@ class SponsorshipController extends Controller
         if ($result->success) {
             $transaction = $result->transaction;
             $sponsorship->save();
-
+            $createdAt = $transaction->createdAt->format('Y-m-d H:i:s');
+            if ($request->id === '1') {
+                $expired_at = date('Y-m-d H:i:s', strtotime('+24 hours', strtotime($createdAt)));
+            } elseif ($request->id === '2') {
+                $expired_at = date('Y-m-d H:i:s', strtotime('+72 hours', strtotime($createdAt)));
+            } else {
+                $expired_at = date('Y-m-d H:i:s', strtotime('+144 hours', strtotime($createdAt)));
+            }
+            $apartment->sponsorships()->attach($sponsorship->id, [
+                'expired_at' => $expired_at
+            ]);
             return redirect()->route('admin.apartments.index')->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
         } else {
             $errorString = "";
