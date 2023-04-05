@@ -13,7 +13,7 @@ class StoreMessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['nullable'],
+            'surname' => ['nullable'],
+            'email' => ['required'],
+            'description' => ['required', 'max:500'],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'email.required' => 'E` necessario inserire una mail di riconoscimento',
+            'description.required' => 'Compilare la sezione di messaggio',
+            'description.max' => 'Il testo non deve superare i 500 caratteri, è possibile inviare più messaggi consecutivamente se necessario'
         ];
     }
 }
