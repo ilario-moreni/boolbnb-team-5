@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Builder;
+use Location\Distance\Vincenty;
+use Illuminate\Support\Facades\DB;
+
+
 
 class ApartmentController extends Controller
 {
@@ -34,6 +38,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
+
         /* indirizzamento alla pagina di creazione di un nuovo apartment */
         $services = Service::all();
         return view('admin.apartments.create', compact('services'));
