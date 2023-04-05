@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <form class="m-5" method="post" id="payment-form" action="{{ url('/checkout') }}">
+    {{-- <form class="m-5" method="post" id="payment-form" action="{{ url('/checkout') }}">
         @csrf
         <section>
             <label for="amount">
@@ -49,5 +49,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

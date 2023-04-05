@@ -1,54 +1,25 @@
 @extends('layouts.admin')
 @section('content')
-
     <div class="container">
         <div class="row my-5">
+            <h1>{{ $apartmentSlug }}</h1>
             <div class="col-12 d-flex justify-content-between">
+                @foreach ($sponsorships as $item)
+                    <div class="card rounded-4 p-2 bg-azure" style="width: 22rem;">
+                        <div class="card-body">
+                            <h5 class="card-title h1 text-center">{{ $item->name }}</h5>
 
-                <div class="card rounded-4 p-2 bg-azure" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="card-title h1 text-center">{{ $sponsorships[0]->name }}</h5>
-
-                        <div class="d-flex mt-4">
-                            <h3 class="m-0">h{{ $sponsorships[0]->duration }}/</h3>
-                            <h4 class="m-0">€{{ $sponsorships[0]->price }}</h4>
+                            <div class="d-flex mt-4">
+                                <h3 class="m-0">h{{ $item->duration }}/</h3>
+                                <h4 class="m-0">€{{ $item->price }}</h4>
+                            </div>
+                            <p class="card-text h5 lh-lg text-center my-4">{{ $item->description }}</p>
+                            <a class="btn button-color text-white"
+                                href="{{ route('admin.sponsorships.show', ['apartmentSlug' => $apartmentSlug, 'id' => $item->id]) }}">Acquista</a>
                         </div>
-
-                        <p class="card-text h5 lh-lg text-center my-4">{{ $sponsorships[0]->description }}</p>
-                        <a href="#" class="btn button-color text-white">Acquista</a>
                     </div>
-                </div>
-
-                <div class="card rounded-4 p-2 bg-blue" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="card-title h1 text-center">{{ $sponsorships[1]->name }}</h5>
-
-                        <div class="d-flex mt-4">
-                            <h3 class="m-0">h{{ $sponsorships[1]->duration }}/</h3>
-                            <h4 class="m-0">€{{ $sponsorships[1]->price }}</h4>
-                        </div>
-
-                        <p class="card-text h5 lh-lg text-center my-4">{{ $sponsorships[1]->description }}</p>
-                        <a href="#" class="btn button-color text-white">Acquista</a>
-                    </div>
-                </div>
-
-                <div class="card rounded-4 p-2 bg-pink" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="card-title h1 text-center">{{ $sponsorships[2]->name }}</h5>
-
-                        <div class="d-flex mt-4">
-                            <h3 class="m-0">h{{ $sponsorships[2]->duration }}/</h3>
-                            <h4 class="m-0">€{{ $sponsorships[2]->price }}</h4>
-                        </div>
-
-                        <p class="card-text h5 lh-lg text-center my-4">{{ $sponsorships[2]->description }}</p>
-                        <a href="#" class="btn button-color text-white">Acquista</a>
-                    </div>
-                </div>
-                
+                @endforeach
             </div>
         </div>
     </div>
-
 @endsection

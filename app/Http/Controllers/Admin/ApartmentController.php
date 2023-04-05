@@ -24,8 +24,6 @@ class ApartmentController extends Controller
     {
         $user = Auth::user();
         $apartments = Apartment::where('user_id', $user->id)->get();
-
-
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -55,7 +53,6 @@ class ApartmentController extends Controller
         $address = str_replace(' ', ',', $request->address);
         $n_house = $request->n_house;
         $cap = $request->cap;
-
         /* controllo e salvataggio dell'immagine */
         $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=" . $n_house . "&streetName=" . $address . "i&municipality=Italia&postalCode=" . $cap . "&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
         $response = $res->json();
@@ -67,13 +64,9 @@ class ApartmentController extends Controller
 
             $form_data['image'] = $path;
         }
-
         /* generazione e assegnazione slug */
         $slug = Apartment::generateSlug($request->title);
         $form_data['slug'] = $slug;
-
-
-
         /* creazione riempimento e salvataggio istanza di apartment */
         $newApartment = new Apartment();
         $newApartment->user_id = $user->id;
@@ -84,7 +77,6 @@ class ApartmentController extends Controller
         if ($request->has('services')) {
             $newApartment->services()->attach($request->services);
         }
-
         /* reindirizzamento alla pagina index una volta completate le operazioni precedenti */
         return redirect()->route('admin.apartments.index')->with('message', 'Annuncio creato correttamente');
     }
@@ -146,26 +138,18 @@ class ApartmentController extends Controller
         if ($user->id != $apartment->user_id) {
             return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
-
         //VIENE VALIDATO IL FORM INVIATO DALL'UTENTE ATTRAVERSO LA CLASSE "UpdateApartmentRequest" CHE CONTROLLA CHE I DATI SIANO CORRETTI E COERENTI CON LE REGOLE DI VALIDAZIONE DEFINITE
         $form_data = $request->validated();
-
-
         //VIENE GENERATO UNO "slug" UNIVOCO PER L'APPARTAMENTO UTILIZZANDO IL METODO STATICO "generateSlug()" NEL MODELLO "Apartment".
         $slug = Apartment::generateSlug($request->title, '-');
-
-
         $form_data['slug'] = $slug;
         if ($request->hasFile('image')) {
             if ($apartment->image) {
                 Storage::delete($apartment->image);
             }
-
             $path = Storage::disk('public')->put('apartment_images', $request->image);
-
             $form_data['image'] = $path;
         }
-
         $address = str_replace(' ', ',', $request->address);
         $n_house = $request->n_house;
         $cap = $request->cap;
@@ -195,7 +179,6 @@ class ApartmentController extends Controller
         }
         //Elimino il progetto specificato
         $apartment->delete();
-
         //Reindirizza alla pagina index.
         return redirect()->route('admin.apartments.index')->with('message', 'Annuncio cancellato correttamente');
     }
