@@ -8,6 +8,7 @@ use App\Models\Apartment;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Builder;
 
+
 class ApartmentController extends Controller
 {
 
