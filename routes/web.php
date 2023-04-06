@@ -41,7 +41,6 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
     Route::get('{id}/messages', [MessageController::class, 'index'])->name('messages');
     Route::resource('services', ServiceController::class);
-    // Route::resource('sponsorships', SponsorshipController::class)->parameters(['apartments' => 'apartment:slug']);
     Route::get('/sponsorships/{apartmentSlug}', [SponsorshipController::class, 'index'])->name('sponsorships.index');
     Route::get('/sponsorships/{apartmentSlug}/{id}', [SponsorshipController::class, 'show'])->name('sponsorships.show');
     Route::post('/sponsorships/{apartmentSlug}/{id}/payment', [SponsorshipController::class, 'processPayment'])->name('sponsorships.process_payment');

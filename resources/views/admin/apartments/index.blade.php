@@ -7,10 +7,8 @@
                     <h2>Lista Appartamenti</h2>
                 </div>
                 <div>
-
                     <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Aggiungi
                         Appartamenti</a>
-
                     @if (session('message'))
                         <div class="alert alert-success mt-5">
                             {{ session('message') }}
@@ -19,6 +17,11 @@
                     @if (session('warning'))
                         <div class="alert alert-danger mt-5">
                             {{ session('warning') }}
+                        </div>
+                    @endif
+                    @if (session('success_message'))
+                        <div class="alert alert-success mt-5">
+                            {{ session('success_message') }}
                         </div>
                     @endif
                 </div>
@@ -31,8 +34,8 @@
                     <thead class="table-dark">
                         <th>Immagine</th>
                         <th>Titolo</th>
-                        <th>Creato</th>
-                        <th>Modificato</th>
+                        <th>Info</th>
+                        <th>Creato il:</th>
                         <th>Azioni</th>
                         <th>Messaggi</th>
                     </thead>
@@ -49,9 +52,24 @@
                                             alt="">
                                     @endif
                                 </td>
-                                <td>{{ $apartment->title }}</td>
-                                <td>{{ $apartment->created_at }}</td>
-                                <td>{{ $apartment->updated_at }}</td>
+                                <td>
+                                    {{ $apartment->title }}
+                                    @if ($isSponsored[$loop->index])
+                                        <i class="fa-solid fa-crown"></i>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($isSponsored[$loop->index])
+                                        <div>La tua sponsorizzazione scade il:
+                                            {{ date('d/m/Y', strtotime($apartment->sponsorships->first()->pivot->expired_at)) }}
+                                        </div>
+                                    @elseif ($apartment->sponsorships->isNotEmpty())
+                                        <p>la sponsorizzazione è scaduta</p>
+                                    @else
+                                        <p>Questo appartamento non è sponsorizzato</p>
+                                    @endif
+                                </td>
+                                <td>{{ date('d/m/Y', strtotime($apartment->created_at)) }}</td>
                                 <td class="">
                                     <div class="d-flex">
                                         <div>

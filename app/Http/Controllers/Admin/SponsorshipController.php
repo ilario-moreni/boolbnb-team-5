@@ -19,11 +19,12 @@ class SponsorshipController extends Controller
     {
         $sponsorships = Sponsorship::all();
         $apartmentSlug = $request->apartmentSlug;
-        // dd($request);
-        // dd($request->input('apartmentSlug'));
-        // dd($request->all());
-        // dd($request->route()->parameters());
-        return view('admin.sponsorships.index', compact('sponsorships', 'apartmentSlug'));
+
+        $apartment = Apartment::where('slug', $apartmentSlug)->first();
+        // Check if the apartment is already sponsored
+        $isSponsored = $apartment->sponsorships()->where('expired_at', '>', now())->exists();
+
+        return view('admin.sponsorships.index', compact('sponsorships', 'apartmentSlug', 'isSponsored'));
     }
 
     /**
@@ -123,6 +124,11 @@ class SponsorshipController extends Controller
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
+            'customer' => [
+                'firstName' => 'Sophia',
+                'lastName' => 'Mziou',
+                'email' => 'sofiamziou@gmail.com'
+            ],
             'options' => [
                 'submitForSettlement' => true
             ]
@@ -137,12 +143,14 @@ class SponsorshipController extends Controller
             } elseif ($request->id === '2') {
                 $expired_at = date('Y-m-d H:i:s', strtotime('+72 hours', strtotime($createdAt)));
             } else {
-                $expired_at = date('Y-m-d H:i:s', strtotime('+144 hours', strtotime($createdAt)));
+                $expired_at = date('Y-m-d H:i:s', strtotime('+1 hours', strtotime($createdAt)));
             }
-            $apartment->sponsorships()->attach($sponsorship->id, [
-                'expired_at' => $expired_at
-            ]);
-            return redirect()->route('admin.apartments.index')->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
+            $apartment->sponsorships()->attach(
+                $sponsorship->id,
+                ['expired_at' => $expired_at]
+            );
+
+            return redirect()->route('admin.apartments.index')->with('success_message', 'Pagamento effettuato con successo');
         } else {
             $errorString = "";
 
