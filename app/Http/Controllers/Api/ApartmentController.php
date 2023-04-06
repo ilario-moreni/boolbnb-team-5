@@ -22,7 +22,7 @@ class ApartmentController extends Controller
         foreach ($resultApartments as $apartment) {
             array_push($idarray, $apartment->id);
         }
-        $idapartment = Apartment::whereIn('id', $idarray)->select(['*'])->selectRaw("(6371 * acos(cos(radians($cordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($cordinates[1])) + sin(radians($cordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->orderBy('distance')->get();
+        $idapartment = Apartment::whereIn('id', $idarray)->select(['*'])->selectRaw("(6371 * acos(cos(radians($cordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($cordinates[1])) + sin(radians($cordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->orderBy('distance')->with('services')->get();
 
         return response()->json([
             'success' => true,
@@ -88,6 +88,16 @@ class ApartmentController extends Controller
                 'prova' => $idapartment
             ]);
         }
+    }
+    public function sponsor()
+    {
+
+        $sponsor = Apartment::Has('sponsorships')->get();
+        return response()->json([
+            'success' => true,
+            'sponsor' => $sponsor
+
+        ]);
     }
     public function getRadiusCenter($a, $b)
     {
