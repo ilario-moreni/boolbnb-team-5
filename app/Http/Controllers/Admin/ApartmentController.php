@@ -24,7 +24,10 @@ class ApartmentController extends Controller
     {
         $user = Auth::user();
         $apartments = Apartment::where('user_id', $user->id)->get();
-        return view('admin.apartments.index', compact('apartments'));
+        $isSponsored = $apartments->map(function ($apartment) {
+            return $apartment->sponsorships()->where('expired_at', '>', now())->exists();
+        });
+        return view('admin.apartments.index', compact('apartments', 'isSponsored'));
     }
 
     /**
