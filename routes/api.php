@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\MessageController as MessageController;
 Route::post('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::post('/apartments/filter/', [ApartmentController::class, 'filter']);
+Route::post('/apartments/sponsor/', [ApartmentController::class, 'sponsor']);
 
 Route::get('/services', [ServiceController::class, 'index']);
 Route::post('/messages', [MessageController::class, 'index']);
