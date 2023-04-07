@@ -92,7 +92,9 @@ class ApartmentController extends Controller
     public function sponsor()
     {
 
-        $sponsor = Apartment::Has('sponsorships')->get();
+        $sponsor = Apartment::Has('sponsorships')->whereHas('sponsorships', function ($q) {
+            $q->where('expired_at', '>', now());
+        })->get();
         return response()->json([
             'success' => true,
             'sponsor' => $sponsor
