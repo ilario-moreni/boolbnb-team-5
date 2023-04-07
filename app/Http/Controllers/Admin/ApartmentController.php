@@ -41,21 +41,6 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $apartments = Apartment::where('user_id', $user->id)->get();
-        $isSponsored = $apartments->map(function ($apartment) {
-            return $apartment->sponsorships()->where('expired_at', '>', now())->get();
-        });
-
-        $apartment = Apartment::Has('sponsorships')->whereHas('sponsorships', function ($q) {
-            $q->where('expired_at', '>', now());
-        })->get();
-        dd($apartment);
-        $sponsor2 = Apartment::leftJoin('apartment_sponsorship', 'apartment_sponsorship.apartment_id', '=', 'apartments.id')->orderByRaw('ISNULL(apartment_sponsorship.id),apartment_sponsorship.id DESC')->select('apartments.*')->get();
-        dd($sponsor2);
-        /* $sponsor = Apartment::Has('sponsorships')->with('sponsorships')->get();
-        $sponsor2 = Apartment::leftJoin('apartment_sponsorship', 'apartment_sponsorship.apartment_id', '=', 'apartments.id')->orderByRaw('ISNULL(apartment_sponsorship.id),apartment_sponsorship.id DESC')->select('apartments.*')->get();
-        $prova = $this->filter(); */
         /* indirizzamento alla pagina di creazione di un nuovo apartment */
         $services = Service::all();
         return view('admin.apartments.create', compact('services'));
