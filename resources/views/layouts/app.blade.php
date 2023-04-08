@@ -20,18 +20,13 @@
 </head>
 
 <body>
-    <div id="app" class="bg-img min-100vh">
-
-
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-light-transparent shadow-sm">
             <div class="container">
                 <div>
-
                     <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                        <div class="logo-font">
-                            BoolBnB
-                        </div>
-                        {{-- config('app.name', 'Laravel') --}}
+                        <img style="width: 130px" src="{{ Vite::asset('resources/img/bool_bb_logo.svg') }}"
+                            alt="logo">
                     </a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -45,15 +40,16 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 
-                    <div class="navbar-nav ml-auto">
+                    <div class="navbar-nav ml-auto py-2">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="nav-item me-3">
+                                <a class="nav-link color_green" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link btn button-color text-white me-3"
+                                        href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -87,11 +83,11 @@
                 </div>
             </div>
         </nav>
-
         <main class="">
             @yield('content')
         </main>
     </div>
 </body>
+<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 
 </html>
