@@ -26,17 +26,18 @@
 
 <body class="bg-img h-100">
     <div id="app">
-
-        <header class="navbar bg-light-transparent  flex-md-nowrap p-2 w-100">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 logo-font" href="/">BoolBnB</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+        <header class="navbar bg-white flex-md-nowrap p-2 w-100 border-bottom">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
+                <img src="{{ Vite::asset('resources/img/bool_bb_logo.svg') }}" alt="logo">
+            </a>
+            <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <input class="form-control form-control-dark w-100" type="text" Placeholder="Search">
+            {{-- <input class="form-control form-control-dark w-100" type="text" Placeholder="Search"> --}}
             <div class="navbar nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link text-dark" href="{{ route('logout') }}"
+                    <a class="nav-link text-dark btn button-color text-white me-3" href="{{ route('logout') }}"
                         onclick="event.preventDefault()
                     document.getElementById('logout-form').submit()">
                         {{ __('Logout') }}
@@ -47,39 +48,38 @@
                 </div>
             </div>
         </header>
-        <div class="container-fluid vh-100">
-            <div class="row h-100">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse bg-light-transparent">
+        <div class="container-fluid vh-side">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-lg-block sidebar collapse border-end myside">
                     <div class="position-sticky">
                         <ul class="nav flex-column">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.dashboard' ? 'selected' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link text-dark f-20 rounded {{ Route::currentRouteName() == 'admin.apartments.index' ? 'selected' : '' }}"
+                                <a class="nav-link {{ Route::currentRouteName() == 'admin.apartments.index' ? 'selected' : '' }}"
                                     href="{{ route('admin.apartments.index') }}">
-                                    <i class="fa-solid fa-building fa-lg fa-fw"></i> Appartamenti
+                                    <div class="d-flex align-items-center gap-1">
+                                        <lord-icon src="https://cdn.lordicon.com/gmzxduhd.json" trigger="loop"
+                                            delay="1000" style="width:50px;height:50px">
+                                        </lord-icon>
+                                        <h5 class="m-0 text-dark">Appartamenti</h5>
+                                    </div>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                {{-- <a class="nav-link text-dark f-20 {{ Route::currentRouteName() == 'admin.sponsorships.index' ? 'selected' : '' }}"
-                                    href="{{ route('admin.sponsorships.index') }}">
-                                    <i class="fa-solid fa-crown px-1"></i> Sponsorships
-                                </a> --}}
                             </li>
                         </ul>
                     </div>
                 </nav>
-
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <main class="col-md-12 col-lg-10">
                     @yield('content')
                 </main>
             </div>
         </div>
     </div>
 </body>
+<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 
 </html>

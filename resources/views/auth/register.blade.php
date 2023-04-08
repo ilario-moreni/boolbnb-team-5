@@ -1,19 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card bg-light-transparent">
-                    <div class="card-header">{{ __('Register') }}</div>
+                <div class="card bg-light-transparent border-0 shadow">
+                    <div class="card-header bg_color_green text-light border-0">{{ __('Register') }}</div>
+                    <div class="card-body">
+                        <form novalidate method="POST" action="{{ route('register') }}" id="form-register">
+                            @csrf
 
-
-                <div class="card-body">
-                    <form novalidate method="POST" action="{{ route('register') }}" id="form-register">
-                        @csrf
-
-                        <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                            <div class="mb-4 row">
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
 
                                 <div class="col-md-6">
