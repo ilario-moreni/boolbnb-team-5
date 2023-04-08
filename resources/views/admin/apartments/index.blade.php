@@ -46,11 +46,11 @@
                             <tr>
                                 <td class="img_table">
                                     @if ($apartment->image == null)
-                                        <img class="w-100"
+                                        <img class="w-100 altezza_img_apt"
                                             src="https://www.finconsumo.com/wp-content/uploads/2022/07/placeholder-176.png"
                                             alt="">
                                     @else
-                                        <img class="w-100" src="{{ asset('storage/' . $apartment->image) }}"
+                                        <img class="w-100 altezza_img_apt" src="{{ asset('storage/' . $apartment->image) }}"
                                             alt="">
                                     @endif
                                 </td>
