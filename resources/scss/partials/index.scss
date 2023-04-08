@@ -16,3 +16,20 @@
     top: 0;
     transform: translate(50%, -50%);
 }
+
+
+.tr_top{
+    border-top:2px solid #02CCBC;
+}
+
+.width-40-table{
+    width: 40%;
+}
+
+.table > :not(caption) > * > *{
+    border-bottom-width: 0;
+}
+
+.mail_color{
+    color:#014742;
+}
