@@ -91,14 +91,13 @@ class ApartmentController extends Controller
     }
     public function sponsor()
     {
+        $sponsor = Apartment::whereHas('sponsorships', function ($query) {
+            $query->where('expired_at', '>', now());
+        })->with('services')->get();
 
-        $sponsor = Apartment::Has('sponsorships')->whereHas('sponsorships', function ($q) {
-            $q->where('expired_at', '>', now());
-        })->get();
         return response()->json([
             'success' => true,
             'sponsor' => $sponsor
-
         ]);
     }
     public function getRadiusCenter($a, $b)

@@ -11,14 +11,54 @@
     <div id="show" class="container d-block">
         <div class="row my-5">
             <div class="col-12 d-flex justify-content-between">
-                <div class="card rounded-4 p-2 bg-azure" style="width: 22rem;">
-                    <div class="card-body">
-                        <h5 class="card-title h1 text-center">{{ $sponsorship->name }}</h5>
-                        <h3 class="text-center mt-1">durata: {{ $sponsorship->duration }} ore </h3>
-                        <h3 class="text-center mt-1">€{{ $sponsorship->price }}</h3>
-                        <p class="card-text h5 lh-lg text-center my-4">{{ $sponsorship->description }}</p>
+                <article class="plan [ card_ ]">
+                    <div class="inner">
+
+                        <span class="pricing">
+                            <span>
+                                €{{ $sponsorship->price }}
+                            </span>
+                        </span>
+                        <h2 class="title">{{ $sponsorship->name }}</h2>
+                        <p class="info">{{ $sponsorship->description }}</p>
+                        <ul class="features">
+                            <li>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                        height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <span><strong>{{ $sponsorship->duration }}</strong> ore di visibilità</span>
+                            </li>
+                            <li>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                        height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <span>presenza in <strong>Homepage</strong></span>
+                            </li>
+                            <li>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                        height="24">
+                                        <path fill="none" d="M0 0h24v24H0z" />
+                                        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <span>Più visualizzazioni</span>
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                </article>
+
             </div>
             <div class="row mt-3 me-2">
                 <div class="col-6">

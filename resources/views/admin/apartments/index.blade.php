@@ -1,54 +1,56 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-12 my-5">
-                <div class="d-flex justify-content-between">
-                    <h2>Lista Appartamenti</h2>
-                </div>
-                <div>
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color mt-4 text-white">Aggiungi
+            <div class="col-12 my-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="text-dark m-0">I tuoi Appartamenti</h2>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white">Aggiungi
                         Appartamenti</a>
+                </div>
+                <div class="row">
                     @if (session('message'))
-                        <div class="alert alert-success mt-5">
+                        <div class="col-6 alert alert-success mt-2 mb-0">
                             {{ session('message') }}
                         </div>
                     @endif
                     @if (session('warning'))
-                        <div class="alert alert-danger mt-5">
+                        <div class="col-6 alert alert-danger mt-2 mb-0">
                             {{ session('warning') }}
                         </div>
                     @endif
                     @if (session('success_message'))
-                        <div class="alert alert-success mt-5">
+                        <div class="col-6 alert alert-success mt-2 mb-0">
                             {{ session('success_message') }}
                         </div>
                     @endif
                 </div>
-
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
-                <table class="table bg-light-transparent ">
+            <div class="col-12 table-responsive">
+                <div class="col-md-4 d-flex flex-wrap">
+                </div>
+
+                {{-- tabella --}}
+                <table class="table bg-light-transparent">
                     <thead class="table-dark">
                         <th>Immagine</th>
                         <th>Titolo</th>
-                        <th>Info</th>
+                        <th>Informazioni</th>
                         <th>Creato il:</th>
                         <th>Azioni</th>
-                        <th>Messaggi</th>
                     </thead>
                     <tbody>
                         @forelse ($apartments as $apartment)
                             <tr>
-                                <td class="w-25">
+                                <td class="img_table">
                                     @if ($apartment->image == null)
-                                        <img class="w-100"
+                                        <img class="w-100 altezza_img_apt"
                                             src="https://www.finconsumo.com/wp-content/uploads/2022/07/placeholder-176.png"
                                             alt="">
                                     @else
-                                        <img class="w-100" src="{{ asset('storage/' . $apartment->image) }}"
+                                        <img class="w-100 altezza_img_apt" src="{{ asset('storage/' . $apartment->image) }}"
                                             alt="">
                                     @endif
                                 </td>
@@ -74,49 +76,46 @@
                                     <div class="d-flex">
                                         <div>
                                             <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
-                                                title="Visualizza Appartamento"
-                                                class="button-action btn btn-sm btn-primary  my-2">
-                                                <i class="fa-solid fa-eye elem-center"></i>
+                                                title="Visualizza Appartamento">
+                                                <lord-icon src="https://cdn.lordicon.com/tyounuzx.json" trigger="hover"
+                                                    style="width:40px;height:40px">
+                                                </lord-icon>
                                             </a>
                                         </div>
                                         <div>
                                             <a href="{{ route('admin.apartments.edit', $apartment->slug) }}"
-                                                title="Modifica Appartamento"
-                                                class="button-action btn btn-sm btn-warning text-white my-2 ms-2">
-                                                <i class="fa-solid fa-pencil elem-center"></i>
+                                                title="Modifica Appartamento">
+                                                <lord-icon src="https://cdn.lordicon.com/wloilxuq.json" trigger="hover"
+                                                    style="width:40px;height:40px">
+                                                </lord-icon>
                                             </a>
                                         </div>
                                         <div>
                                             <a href="{{ route('admin.sponsorships.index', ['apartmentSlug' => $apartment->slug]) }}"
-                                                title="Sponsorizza Appartamento"
-                                                class="button-action btn btn-sm btn-success text-white my-2 ms-2">
-                                                <i class="fa-solid fa-crown elem-center"></i>
+                                                title="Sponsorizza Appartamento">
+                                                <lord-icon src="https://cdn.lordicon.com/mdgrhyca.json" trigger="morph"
+                                                    style="width:40px;height:40px">
+                                                </lord-icon>
                                             </a>
                                         </div>
                                         <form action="{{ route('admin.apartments.destroy', $apartment->slug) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit"
-                                                class="button-action btn btn-sm  btn-danger my-2 ms-2 confirm_delete_button"
+                                            <a type="submit" class="button-action m-0 confirm_delete_button"
                                                 data-bs-toggle="modal" data-bs-target="#delete-modal-apartment"
                                                 data-projectid="{{ $apartment->id }}">
-                                                <i class="fa-solid fa-trash-can elem-center"></i>
-                                            </button>
+                                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="hover"
+                                                    style="width:40px;height:40px">
+                                                </lord-icon>
+                                            </a>
                                         </form>
+                                        <a href="{{ route('admin.messages', $apartment->id) }}" class="button-action">
+                                            <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="hover"
+                                                style="width:40px;height:40px">
+                                            </lord-icon>
+                                        </a>
                                     </div>
-                                </td>
-                                <td class="">
-                                    <a href="{{ route('admin.messages', $apartment->id) }}"
-                                        class="button-action btn btn-sm btn-success mt-2">
-                                        <i class="fa-regular fa-envelope elem-center"></i>
-                                        @if ($apartment->messages)
-                                            <div class='notification'>
-                                                {{ count($apartment->messages) }}
-                                            </div>
-                                        @else
-                                        @endif
-                                    </a>
                                 </td>
                             </tr>
                         @empty
