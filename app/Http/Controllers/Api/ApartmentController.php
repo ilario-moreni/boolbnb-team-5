@@ -70,7 +70,7 @@ class ApartmentController extends Controller
             array_push($idarray, $apartment->id);
         }
         if ($services === []) {
-            $idapartment = Apartment::whereIn('id', $idarray)->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->select(['*'])->selectRaw("(6371 * acos(cos(radians($cordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($cordinates[1])) + sin(radians($cordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $r_ange")->orderBy('distance')->get();
+            $idapartment = Apartment::whereIn('id', $idarray)->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->select(['*'])->selectRaw("(6371 * acos(cos(radians($cordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($cordinates[1])) + sin(radians($cordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $r_ange")->orderBy('distance')->with('services')->get();
             return response()->json([
                 'success' => true,
                 'prova' => $idapartment
@@ -82,7 +82,7 @@ class ApartmentController extends Controller
                 ->withCount(['services' => function ($q) use ($services) {
                     $q->whereIn('services.id', $services);
                 }])
-                ->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->select(['*'])->selectRaw("(6371 * acos(cos(radians($cordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($cordinates[1])) + sin(radians($cordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $r_ange")->orderBy('distance')->get();
+                ->where('n_room', '>=', $rooms)->where('n_bed', '>=', $beds)->where('n_bathroom', '>=', $bathrooms)->select(['*'])->selectRaw("(6371 * acos(cos(radians($cordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($cordinates[1])) + sin(radians($cordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $r_ange")->with('services')->orderBy('distance')->get();
             return response()->json([
                 'success' => true,
                 'prova' => $idapartment
