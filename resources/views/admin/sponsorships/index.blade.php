@@ -4,7 +4,7 @@
         <div class="row my-5">
             <div class="col-12 d-flex justify-content-between">
                 @foreach ($sponsorships as $item)
-                    <article class="plan [ card ]">
+                    <article class="plan [ card_ ]">
                         <div class="inner">
 
                             <span class="pricing">
