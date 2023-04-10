@@ -1,15 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-    <div id="loader" class="container d-none">
-        <div class="row">
-            <div class="col">
-                <div class="loader my-4"></div>
-                <h5>pagamento in corso, attendere...</h5>
+    <div id="loader" class="container h-100 d-none">
+        <div class="row h-100">
+            <div class="col h-100 d-flex align-items-center justify-content-center flex-column">
+                <h3>pagamento in corso, attendere...</h3>
+                <lord-icon src="https://cdn.lordicon.com/slkvcfos.json" trigger="loop" delay="1000"
+                    style="width:300px;height:300px">
+                </lord-icon>
             </div>
         </div>
     </div>
-    <div class="d-flex flex-row">
-        <div id="show" class="container d-block">
+    <div class="d-flex flex-row d-block">
+        <div id="show" class="container">
             <div class="row my-5">
                 <div class="col d-flex justify-content-between">
                     <article class="plan [ card_ ]">
@@ -87,7 +89,7 @@
         </div>
     </div>
     <script src="https://js.braintreegateway.com/web/dropin/1.36.0/js/dropin.min.js"></script>
-    <script src="https://js.braintreegateway.com/web/3.38.1/js/hosted-fields.min.js"></script>
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
     <script>
         var form = document.getElementById('payment-form');
         var client_token = "{{ $token }}";
