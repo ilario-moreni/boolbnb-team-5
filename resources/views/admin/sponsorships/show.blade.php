@@ -108,9 +108,6 @@
                 return;
             }
             form.addEventListener('submit', function(event) {
-                loading.classList.remove('d-none');
-                loading.classList.add('d-block');
-                show.classList.toggle('d-none');
                 event.preventDefault();
                 instance.requestPaymentMethod(function(err, payload) {
                     if (err) {
@@ -118,6 +115,9 @@
                         return;
                     }
                     // Add the nonce to the form and submit
+                    loading.classList.remove('d-none');
+                    loading.classList.add('d-block');
+                    show.classList.toggle('d-none');
                     document.querySelector('#nonce').value = payload.nonce;
                     form.submit();
                 });
