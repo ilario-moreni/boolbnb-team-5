@@ -5,6 +5,7 @@ const title = document.getElementById('title');
 const rooms = document.getElementById('rooms');
 const beds = document.getElementById('beds');
 const bathrooms = document.getElementById('bathrooms');
+const mq = document.getElementById('mq');
 /* const latitude = document.getElementById('latitude');
 const longitude = document.getElementById('longitude'); */
 let valid = false;
@@ -40,6 +41,7 @@ function validateInputs(elem) {
     const roomsValue = rooms.value.trim();
     const bedsValue = beds.value.trim();
     const bathroomsValue = bathrooms.value.trim();
+    const mqValue = mq.value.trim();
     /* const latitudeValue = latitude.value.trim();
     const longitudeValue = longitude.value.trim(); */
 
@@ -75,6 +77,13 @@ function validateInputs(elem) {
 
     if (bathroomsValue === '') {
         setError(bathrooms, 'Numero bagni richiesto');
+        isError = true;
+    }
+    else {
+        setSuccess(bathrooms);
+    }
+    if (mqValue === '') {
+        setError(mq, 'Metratura richiesta');
         isError = true;
     }
     else {

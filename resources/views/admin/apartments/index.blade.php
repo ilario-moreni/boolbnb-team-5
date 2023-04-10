@@ -13,17 +13,17 @@
                 </div>
                 <div class="row">
                     @if (session('message'))
-                        <div class="col-6 alert alert-success mt-2 mb-0">
+                        <div class="w-100 alert alert-success mt-2 mb-0 pe-2 ps-3">
                             {{ session('message') }}
                         </div>
                     @endif
                     @if (session('warning'))
-                        <div class="col-6 alert alert-danger mt-2 mb-0">
+                        <div class="w-100 alert alert-danger mt-2 mb-0 pe-2 ps-3">
                             {{ session('warning') }}
                         </div>
                     @endif
                     @if (session('success_message'))
-                        <div class="col-6 alert alert-success mt-2 mb-0">
+                        <div class="w-100 alert alert-success mt-2 mb-0 pe-2 ps-3">
                             {{ session('success_message') }}
                         </div>
                     @endif
