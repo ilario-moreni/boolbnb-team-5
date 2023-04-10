@@ -1,10 +1,21 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="container">
-        <div class="row my-5">
-            <div class="col-12 d-flex justify-content-between overflow-x-scroll gap-3 gap-lg-0">
-                @foreach ($sponsorships as $item)
-                    <article class="plan [ card_ ]">
+    <div class="container h-100">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-between align-items-center my-4">
+                    <div class="text-center fs-3">Approfitta di una sponsorizzazione secondo le tue esigenze</div>
+                    <a href="{{ route('admin.apartments.index') }}" class="btn button-color text-white d-none d-md-flex">Torna
+                        indietro</a>
+                    <a href="{{ route('admin.apartments.index') }}" class="btn button-color text-white d-md-none"><i
+                            class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between align-content-center gap-4 gap-lg-0 my-4">
+            @foreach ($sponsorships as $item)
+                <div class="col-12 col-lg-4">
+                    <article class="plan card_">
                         <div class="inner">
 
                             <span class="pricing">
@@ -55,27 +66,11 @@
                             @endif
                         </div>
                     </article>
-                @endforeach
-                {{-- @foreach ($sponsorships as $item)
-                    <div class="card rounded-4 p-2 bg-azure" style="width: 22rem;">
-                        <div class="card-body">
-                            <h5 class="card-title h1 text-center">{{ $item->name }}</h5>
-                            <div class="d-flex mt-4">
-                                <h3 class="m-0">h{{ $item->duration }}/</h3>
-                                <h4 class="m-0">€{{ $item->price }}</h4>
-                            </div>
-                            <p class="card-text h5 lh-lg text-center my-4">{{ $item->description }}</p>
-                            @if (!$isSponsored)
-                                <a class="btn button-color text-white"
-                                    href="{{ route('admin.sponsorships.show', ['apartmentSlug' => $apartmentSlug, 'id' => $item->id]) }}">Acquista</a>
-                            @endif
-                        </div>
-                    </div>
-                @endforeach --}}
-            </div>
+                </div>
+            @endforeach
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col my-3">
                 @if ($isSponsored)
                     <h3>Questo appartamento è già sponsorizzato</h3>
                 @endif
