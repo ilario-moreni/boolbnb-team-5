@@ -8,9 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-
+    <title>BoolBNB</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -23,13 +22,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-light-transparent shadow-sm">
             <div class="container">
-                <div>
+                <div class="w-100 d-flex justify-content-between">
                     <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                         <img style="width: 130px" src="{{ Vite::asset('resources/img/bool_bb_logo.svg') }}"
                             alt="logo">
                     </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler mob-menu" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -48,8 +47,8 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link btn button-color text-white me-3"
-                                        href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link btn button-color text-white register"
+                                        href="{{ route('register') }}">{{ __('AirBnb Start') }}</a>
                                 </li>
                             @endif
                         @else
@@ -65,7 +64,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('admin/dashboard') }}">{{ __('Dashboard') }}</a>
+                                    <a class="dropdown-item" href="{{ url('admin/apartments') }}">Appartamenti</a>
                                     <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

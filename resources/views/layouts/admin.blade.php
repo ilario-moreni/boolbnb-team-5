@@ -4,13 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="shortcut icon" href="{{ asset('/public/favicon.ico') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-
+    <title>BoolBNB</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -30,27 +28,29 @@
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
                 <img src="{{ Vite::asset('resources/img/bool_bb_logo.svg') }}" alt="logo">
             </a>
-            <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#sidebarMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {{-- <input class="form-control form-control-dark w-100" type="text" Placeholder="Search"> --}}
-            <div class="navbar nav">
-                <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link text-dark btn button-color text-white me-3" href="{{ route('logout') }}"
-                        onclick="event.preventDefault()
-                    document.getElementById('logout-form').submit()">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+            <div class="d-flex">
+                <button class="navbar-toggler mob-menu d-lg-none collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#sidebarMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar nav">
+                    <div class="nav-item text-nowrap ms-2">
+                        <a class="nav-link text-dark btn button-color text-white me-3" href="{{ route('logout') }}"
+                            onclick="event.preventDefault()
+                        document.getElementById('logout-form').submit()">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
             </div>
+            {{-- <input class="form-control form-control-dark w-100" type="text" Placeholder="Search"> --}}
         </header>
         <div class="container-fluid vh-side">
             <div class="row">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-lg-block sidebar collapse border-end myside">
+                <nav id="sidebarMenu" class="col col-lg-2 d-lg-block sidebar collapse border-end myside">
                     <div class="position-sticky">
                         <ul class="nav flex-column">
                             {{-- <li class="nav-item">
@@ -66,14 +66,14 @@
                                         <lord-icon src="https://cdn.lordicon.com/gmzxduhd.json" trigger="loop"
                                             delay="1000" style="width:50px;height:50px">
                                         </lord-icon>
-                                        <h5 class="m-0 text-dark">Appartamenti</h5>
+                                        <h6 class="m-0 text-dark"><strong>Appartamenti</strong></h6>
                                     </div>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <main class="col-md-12 col-lg-10">
+                <main class="col-md-12 col-lg-10 overflow">
                     @yield('content')
                 </main>
             </div>

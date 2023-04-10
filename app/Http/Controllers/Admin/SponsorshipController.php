@@ -134,7 +134,7 @@ class SponsorshipController extends Controller
             ]
         ]);
 
-        if ($result->success) {
+        if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
             $sponsorship->save();
             $createdAt = $transaction->createdAt->format('Y-m-d H:i:s');
