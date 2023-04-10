@@ -8,74 +8,79 @@
             </div>
         </div>
     </div>
-    <div id="show" class="container d-block">
-        <div class="row my-5">
-            <div class="col-12 d-flex justify-content-between">
-                <article class="plan [ card_ ]">
-                    <div class="inner">
-
-                        <span class="pricing">
-                            <span>
-                                €{{ $sponsorship->price }}
+    <div class="d-flex flex-row">
+        <div id="show" class="container d-block">
+            <div class="row my-5">
+                <div class="col d-flex justify-content-between">
+                    <article class="plan [ card_ ]">
+                        <div class="inner">
+                            <span class="pricing">
+                                <span>
+                                    €{{ $sponsorship->price }}
+                                </span>
                             </span>
-                        </span>
-                        <h2 class="title">{{ $sponsorship->name }}</h2>
-                        <p class="info">{{ $sponsorship->description }}</p>
-                        <ul class="features">
-                            <li>
-                                <span class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                        height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <span><strong>{{ $sponsorship->duration }}</strong> ore di visibilità</span>
-                            </li>
-                            <li>
-                                <span class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                        height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <span>presenza in <strong>Homepage</strong></span>
-                            </li>
-                            <li>
-                                <span class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                        height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <span>Più visualizzazioni</span>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-
+                            <h2 class="title">{{ $sponsorship->name }}</h2>
+                            <p class="info">{{ $sponsorship->description }}</p>
+                            <ul class="features">
+                                <li>
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                            height="24">
+                                            <path fill="none" d="M0 0h24v24H0z" />
+                                            <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <span><strong>{{ $sponsorship->duration }}</strong> ore di visibilità</span>
+                                </li>
+                                <li>
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                            height="24">
+                                            <path fill="none" d="M0 0h24v24H0z" />
+                                            <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <span>presenza in <strong>Homepage</strong></span>
+                                </li>
+                                <li>
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                            height="24">
+                                            <path fill="none" d="M0 0h24v24H0z" />
+                                            <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <span>Più visualizzazioni</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div class="row mt-3 me-2">
-                <div class="col-6">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
                     <form class="m-5" method="post" id="payment-form"
                         action="{{ route('admin.sponsorships.process_payment', ['apartmentSlug' => $apartmentSlug, 'id' => $sponsorship->id]) }}">
                         @csrf
                         <section>
-                            <label for="amount">
-                                <span class="input-label">Amount</span>
-                                <div>{{ $sponsorship->price }}</div>
+                            <label for="amount" class="w-100">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="input-label m-0">Totale:</h5>
+                                    <h5>{{ $sponsorship->price }} €</h5>
+                                </div>
                             </label>
                             <div class="bt-drop-in-wrapper">
                                 <div id="bt-dropin"></div>
                             </div>
                         </section>
                         <input id="nonce" name="payment_method_nonce" type="hidden" />
-                        <button class="button" type="submit"><span>Test Transaction</span></button>
+                        <button class="btn button-color text-white my-2" type="submit"><span>Test
+                                Transaction</span></button>
                     </form>
                 </div>
             </div>
