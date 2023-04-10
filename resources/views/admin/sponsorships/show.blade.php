@@ -81,8 +81,7 @@
                             </div>
                         </section>
                         <input id="nonce" name="payment_method_nonce" type="hidden" />
-                        <button class="btn button-color text-white my-2" type="submit"><span>Test
-                                Transaction</span></button>
+                        <button class="btn button-color text-white my-2" type="submit"><span>Paga</span></button>
                     </form>
                 </div>
             </div>
