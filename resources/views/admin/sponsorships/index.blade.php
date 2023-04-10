@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row my-5">
-            <div class="col-12 d-flex justify-content-between">
+            <div class="col-12 d-flex justify-content-between overflow-x-scroll gap-3 gap-lg-0">
                 @foreach ($sponsorships as $item)
                     <article class="plan [ card_ ]">
                         <div class="inner">

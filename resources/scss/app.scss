@@ -92,11 +92,11 @@ main {
     margin-right: -50px;
 }
 
-@media (max-width: 991.98px) {
-    .cascading-right {
-        margin-right: 0;
-    }
-}
+// @media (max-width: 991.98px) {
+//     .cascading-right {
+//         margin-right: 0;
+//     }
+// }
 
 .bg_color_green {
     background-color: rgb(0, 206, 188);
@@ -160,7 +160,8 @@ main {
         padding: 0.5em 0.75em;
         line-height: 1;
         border-radius: 6px;
-        & + * {
+
+        &+* {
             margin-top: 1rem;
         }
     }
@@ -169,14 +170,16 @@ main {
         font-size: 1.5rem;
         color: var(--c-void);
         line-height: 1.25;
-        & + * {
+
+        &+* {
             margin-top: 1rem;
         }
     }
 
     .info {
         color: var(--c-charcoal);
-        & + * {
+
+        &+* {
             margin-top: 1.25rem;
         }
     }
@@ -184,6 +187,7 @@ main {
     .details {
         display: flex;
         gap: 1rem;
+
         div {
             padding: 0.75em 1em;
             background-color: white;
@@ -233,13 +237,14 @@ main {
         font-weight: 600;
         font-size: 1.25rem;
         color: rgb(31, 202, 197);
-        & + * {
+
+        &+* {
             margin-top: 0.75rem;
         }
     }
 
     .info {
-        & + * {
+        &+* {
             margin-top: 1rem;
         }
     }
@@ -248,11 +253,13 @@ main {
         padding: 0;
         display: flex;
         flex-direction: column;
+
         li {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            & + * {
+
+            &+* {
                 margin-top: 0.75rem;
             }
         }
@@ -266,14 +273,75 @@ main {
             border-radius: 50%;
             width: 20px;
             height: 20px;
+
             svg {
                 width: 14px;
                 height: 14px;
             }
         }
 
-        & + * {
+        &+* {
             margin-top: 1.25rem;
         }
+    }
+}
+
+.v-14 {
+    width: calc(100% / 4 - 0.5rem);
+}
+
+.v-13 {
+    width: calc(100% / 3 - 0.5rem);
+}
+
+.overflow {
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+@media screen and (max-width: 835px) {
+    .mob-menu {
+        border: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .overflow-x-scroll {
+        overflow-x: scroll;
+    }
+
+    .v-14,
+    .v-13 {
+        width: 100%;
+    }
+
+    .myside {
+        height: initial;
+        border-bottom: 1px solid #ebebeb;
+    }
+
+    .inner {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .navbar-brand img {
+        width: 130px;
+    }
+
+    .mob-menu {
+        border: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .myside {
+        height: initial;
+        border-bottom: 1px solid #ebebeb;
     }
 }
