@@ -3,8 +3,10 @@
     <div class="container h-100">
         <div class="row">
             <div class="col">
-                <div class="d-flex justify-content-between align-items-center my-4">
-                    <div class="text-center fs-3">Approfitta di una sponsorizzazione secondo le tue esigenze</div>
+                <div class="d-flex justify-content-between align-items-center gap-md-5 gap-lg-0 my-4">
+                    <div class="text-lg-center d-none d-md-block fs-3">Approfitta di una sponsorizzazione secondo le tue
+                        esigenze
+                    </div>
                     <a href="{{ route('admin.apartments.index') }}" class="btn button-color text-white d-none d-md-flex">Torna
                         indietro</a>
                     <a href="{{ route('admin.apartments.index') }}" class="btn button-color text-white d-md-none"><i
@@ -17,7 +19,6 @@
                 <div class="col-12 col-lg-4">
                     <article class="plan card_">
                         <div class="inner">
-
                             <span class="pricing">
                                 <span>
                                     €{{ $item->price }}
