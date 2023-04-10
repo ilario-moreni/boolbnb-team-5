@@ -161,7 +161,7 @@ main {
         line-height: 1;
         border-radius: 6px;
 
-        &+* {
+        & + * {
             margin-top: 1rem;
         }
     }
@@ -171,7 +171,7 @@ main {
         color: var(--c-void);
         line-height: 1.25;
 
-        &+* {
+        & + * {
             margin-top: 1rem;
         }
     }
@@ -179,7 +179,7 @@ main {
     .info {
         color: var(--c-charcoal);
 
-        &+* {
+        & + * {
             margin-top: 1.25rem;
         }
     }
@@ -238,13 +238,13 @@ main {
         font-size: 1.25rem;
         color: rgb(31, 202, 197);
 
-        &+* {
+        & + * {
             margin-top: 0.75rem;
         }
     }
 
     .info {
-        &+* {
+        & + * {
             margin-top: 1rem;
         }
     }
@@ -259,7 +259,7 @@ main {
             align-items: center;
             gap: 0.5rem;
 
-            &+* {
+            & + * {
                 margin-top: 0.75rem;
             }
         }
@@ -280,14 +280,15 @@ main {
             }
         }
 
-        &+* {
+        & + * {
             margin-top: 1.25rem;
         }
     }
 }
 
-.primary-color {
-    color: #02CCBC;
+.primary-color,
+.green_text {
+    color: #02ccbc;
 }
 
 .v-14 {
@@ -348,4 +349,27 @@ main {
         height: initial;
         border-bottom: 1px solid #ebebeb;
     }
+}
+
+// css welcome
+
+#jumbo .content,
+.content-title,
+#button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    h1 {
+        color: #02ccbc;
+        font-size: 70px;
+    }
+    p {
+        font-size: 50px;
+    }
+}
+
+.register {
+    width: 120px;
 }

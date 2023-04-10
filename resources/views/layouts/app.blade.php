@@ -48,8 +48,8 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link btn button-color text-white me-3"
-                                        href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link btn button-color text-white register"
+                                        href="{{ route('register') }}">{{ __('AirBnb Start') }}</a>
                                 </li>
                             @endif
                         @else
