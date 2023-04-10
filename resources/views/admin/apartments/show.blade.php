@@ -12,8 +12,10 @@
             </div>
             <div class="col-12 col-lg-4 mt-3 mt-lg-0">
                 <h1>{{ $apartment->title }}</h1>
-                <div><i class="fa-solid fa-location-dot primary-color me-1"></i><strong>Indirizzo:</strong> {{$address['street']}}, {{$address['postalCode']}}, {{$address['countrySubdivision']}}</div>
+
+                <div><i class="fa-solid fa-location-dot primary-color me-1"></i><strong>Indirizzo:</strong> {{$address_complete}}</div>
                 <hr class=" border-top-3">
+
                 <div class="d-flex flex-column gap-2">
                     <div>
                         <i class="fa-solid fa-person-shelter primary-color"></i>

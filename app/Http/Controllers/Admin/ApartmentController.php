@@ -103,13 +103,20 @@ class ApartmentController extends Controller
         }
         $latitude = $apartment->latitude;
         $longitude = $apartment->longitude;
-
-        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/reverseGeocode/crossStreet/" . $latitude . "%2C" . $longitude . ".json?limit=1&spatialKeys=false&radius=1000&allowFreeformNewLine=false&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/reverseGeocode/" . $latitude . "%2C" . $longitude . ".json?returnSpeedLimit=false&radius=10000&returnRoadUse=false&allowFreeformNewLine=false&returnMatchType=false&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
         $response = $res->json();
-
         $address = $response['addresses'][0]['address'];
+        if (isset($address['streetNameAndNumber'])) {
+            $street = $address['streetNameAndNumber'];
+        } else {
+            $street = $address['streetName'];
+        }
+        $municipality = $address['municipality'];
+        $postalCode = $address['postalCode'];
+        $address_complete = $street . ", " . $postalCode . ", " . $municipality;
 
-        return view('admin.apartments.show', compact('apartment', 'address'));
+
+        return view('admin.apartments.show', compact('apartment', 'address_complete'));
         /* indirizzamento alla pagina di visualizzazione del un nuovo apartment */
     }
 
@@ -127,8 +134,22 @@ class ApartmentController extends Controller
         if ($user->id != $apartment->user_id) {
             return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
         }
+        $latitude = $apartment->latitude;
+        $longitude = $apartment->longitude;
+        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/reverseGeocode/" . $latitude . "%2C" . $longitude . ".json?returnSpeedLimit=false&radius=10000&returnRoadUse=false&allowFreeformNewLine=false&returnMatchType=false&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+        $response = $res->json();
+        $address = $response['addresses'][0]['address'];
+        if (isset($address['streetNameAndNumber'])) {
+            $street = $address['streetNameAndNumber'];
+        } else {
+            $street = $address['streetName'];
+        }
+        $municipality = $address['municipality'];
+        $postalCode = $address['postalCode'];
+        $address_complete = $street . ", " . $postalCode . ", " . $municipality;
+
         $services = Service::all();
-        return view('admin.apartments.edit', compact('apartment', 'services'));
+        return view('admin.apartments.edit', compact('apartment', 'address_complete', 'services'));
     }
 
     /**
@@ -140,7 +161,6 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-
         $user = Auth::user();
         if ($user->id != $apartment->user_id) {
             return redirect()->route('admin.apartments.index')->with('warning', 'Accesso Negato');
@@ -157,11 +177,17 @@ class ApartmentController extends Controller
             $path = Storage::disk('public')->put('apartment_images', $request->image);
             $form_data['image'] = $path;
         }
-        $address = str_replace(' ', ',', $request->address);
-        $n_house = $request->n_house;
-        $cap = $request->cap;
-        $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=" . $n_house . "&streetName=" . $address . "i&municipality=Italia&postalCode=" . $cap . "&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
-        $response = $res->json();
+        if ($request->n_house !== '' || $request->cap !== '') {
+            $n_house = $request->n_house;
+            $cap = $request->cap;
+            $address = str_replace(' ', ',', $request->address);
+            $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=" . $n_house . "&streetName=" . $address . "i&municipality=Italia&postalCode=" . $cap . "&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+            $response = $res->json();
+        } else {
+            $address = str_replace(' ', ',', $request->address);
+            $res = Http::withOptions(['verify' => false])->get("https://api.tomtom.com/search/2/geocode/" . $address . ".json?storeResult=false&countrySet=It&language=it-IT&view=Unified&key=sqAC6HGqUo0FuWA7iea7gmbV4KpA2wju");
+            $response = $res->json();
+        }
         $latitude = strval($response['results'][0]['position']['lat']);
         $longitude = strval($response['results'][0]['position']['lon']);
         $apartment->latitude = $latitude;
