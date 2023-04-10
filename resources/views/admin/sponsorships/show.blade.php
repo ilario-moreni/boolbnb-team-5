@@ -10,10 +10,10 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-row d-block">
+    <div class="d-flex flex-column flex-lg-row d-block justify-content-center align-items-center">
         <div id="show" class="container">
             <div class="row my-5">
-                <div class="col d-flex justify-content-between">
+                <div class="col mx-3">
                     <article class="plan [ card_ ]">
                         <div class="inner">
                             <span class="pricing">
