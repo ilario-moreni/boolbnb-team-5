@@ -12,23 +12,23 @@
             </div>
             <div class="col-12 col-lg-4 mt-3 mt-lg-0">
                 <h1>{{ $apartment->title }}</h1>
-                <div><strong>Indirizzo:</strong> {{$address['street']}}, {{$address['postalCode']}}, {{$address['countrySubdivision']}}</div>
+                <div><i class="fa-solid fa-location-dot primary-color me-1"></i><strong>Indirizzo:</strong> {{$address['street']}}, {{$address['postalCode']}}, {{$address['countrySubdivision']}}</div>
                 <hr class=" border-top-3">
                 <div class="d-flex flex-column gap-2">
                     <div>
-                        <i class="fa-solid fa-person-shelter"></i>
+                        <i class="fa-solid fa-person-shelter primary-color"></i>
                         <span><strong>Stanze: </strong>{{ $apartment->n_room }}</span>
                     </div>
                     <div>
-                        <i class="fa-solid fa-bed"></i>
+                        <i class="fa-solid fa-bed primary-color"></i>
                         <span><strong>Letti: </strong>{{ $apartment->n_bed }}</span>
                     </div>
                     <div>
-                        <i class="fa-solid fa-bath"></i>
+                        <i class="fa-solid fa-bath primary-color"></i>
                         <span><strong>Bagni: </strong>{{ $apartment->n_bathroom }}</span>
                     </div>
                     <div>
-                        <i class="fa-solid fa-kaaba"></i>
+                        <i class="fa-solid fa-kaaba primary-color"></i>
                         <span><strong>m&#178;: </strong>{{ $apartment->mq }}</span>
                     </div>
                     <hr class="border-top-3">
@@ -36,7 +36,7 @@
                         <span><strong>Servizi:</strong></span>
                         @forelse ($apartment->services as $item)
                             {{ $loop->first ? '' : '' }}
-                            <div> <i class="{{ $item->class_icon }} me-2"></i>{{ $item->name }}</div>
+                            <div> <i class="{{ $item->class_icon }} me-2 primary-color"></i>{{ $item->name }}</div>
                         @empty
                             <div>nessun servizio</div>
                         @endforelse

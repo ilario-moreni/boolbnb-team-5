@@ -58,7 +58,7 @@
                                 <td>
                                     {{ $apartment->title }}
                                     @if ($isSponsored[$loop->index])
-                                        <i class="fa-solid fa-crown"></i>
+                                        <i class="fa-solid fa-crown primary-color"></i>
                                     @endif
                                 </td>
                                 <td>
