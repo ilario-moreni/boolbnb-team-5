@@ -92,7 +92,7 @@
                 <div class="form-row d-flex gap-2">
                     <div class="col-md-6 mb-3">
                         <label for="" class="form-label">Inserisci Via</label>
-                        <input type="text" id="address" class="form-control" name="address">
+                        <input type="text" id="address" class="form-control" name="address" value="{{$address_complete}}">
                         <div class="error d-none alert alert-danger mt-2"></div>
                         @error('address')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="" class="form-label">N. Civico</label>
-                        <input type="number" id="n_house" class="form-control" name="n_house">
+                        <input type="number" id="n_house" class="form-control" name="n_house" >
                         <div class="error d-none alert alert-danger mt-2"></div>
                         @error('address')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="" class="form-label">Cap</label>
-                        <input type="number" id="cap" class="form-control" name="cap">
+                        <input type="number" id="cap" class="form-control" name="cap" >
                         <div class="error d-none alert alert-danger mt-2"></div>
                         @error('address')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>

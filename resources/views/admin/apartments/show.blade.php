@@ -12,7 +12,7 @@
             </div>
             <div class="col-4">
                 <h1>{{ $apartment->title }}</h1>
-                <div><strong>Indirizzo:</strong> {{$address['street']}}, {{$address['postalCode']}}, {{$address['countrySubdivision']}}</div>
+                <div><strong>Indirizzo:</strong> {{$address_complete}}</div>
                 <hr class="w-25 border-top-3">
                 <div class="d-flex flex-column gap-2">
                     <div>
