@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column flex-lg-row d-block justify-content-center align-items-center">
+    <div class="d-flex flex-column flex-lg-row d-block justify-content-center align-items-start">
         <div id="show" class="container">
             <div class="row my-5">
                 <div class="col mx-3">
