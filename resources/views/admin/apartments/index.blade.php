@@ -5,9 +5,11 @@
             <div class="col-12 my-3">
                 <div class="d-flex justify-content-between align-items-center my-4">
                     <h2 class="text-dark m-0">I tuoi Appartamenti</h2>
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white d-none d-md-flex">Aggiungi
+                    <a href="{{ route('admin.apartments.create') }}"
+                        class="btn button-color text-white d-none d-md-flex">Aggiungi
                         Appartamenti</a>
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white d-md-none"><i class="fa-solid fa-plus"></i></a>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white d-md-none"><i
+                            class="fa-solid fa-plus"></i></a>
                 </div>
                 <div class="row">
                     @if (session('message'))
@@ -41,6 +43,7 @@
                         <th>Informazioni</th>
                         <th>Creato il:</th>
                         <th>Azioni</th>
+                        <th>Messaggi</th>
                     </thead>
                     <tbody>
                         @forelse ($apartments as $apartment)
@@ -74,7 +77,7 @@
                                 </td>
                                 <td>{{ date('d/m/Y', strtotime($apartment->created_at)) }}</td>
                                 <td class="">
-                                    <div class="d-flex">
+                                    <div class="d-flex justify-content-center">
                                         <div>
                                             <a href="{{ route('admin.apartments.show', $apartment->slug) }}"
                                                 title="Visualizza Appartamento">
@@ -111,6 +114,10 @@
                                                 </lord-icon>
                                             </a>
                                         </form>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
                                         <a href="{{ route('admin.messages', $apartment->id) }}" class="button-action">
                                             <lord-icon src="https://cdn.lordicon.com/zpxybbhl.json" trigger="hover"
                                                 style="width:40px;height:40px">
