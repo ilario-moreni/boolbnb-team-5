@@ -1,12 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="container">
+    <div class="container-fluid ">
         <div class="row">
             <div class="col-12 my-3">
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center my-4">
                     <h2 class="text-dark m-0">I tuoi Appartamenti</h2>
-                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white">Aggiungi
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white d-none d-md-flex">Aggiungi
                         Appartamenti</a>
+                    <a href="{{ route('admin.apartments.create') }}" class="btn button-color text-white d-md-none"><i class="fa-solid fa-plus"></i></a>
                 </div>
                 <div class="row">
                     @if (session('message'))
