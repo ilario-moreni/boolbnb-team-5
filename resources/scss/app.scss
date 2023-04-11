@@ -387,3 +387,11 @@ tr {
 .b_custom {
     border: 1px solid lightgray;
 }
+
+.mylink {
+    color: grey;
+}
+
+.mylink:hover {
+    color: #02ccbc;
+}

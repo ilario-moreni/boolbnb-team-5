@@ -133,7 +133,9 @@
                                     <div class="col-lg-8 col-md-10 col-sm-12">
                                         <div class="alert alert-light b_custom text-center" role="alert">
                                             <h4 class="alert-heading mb-4">Il database dei tuoi annunci è vuoto.</h4>
-                                            <p class="lead">Clicca sul pulsante "Aggiungi Appartamento" per crearne
+                                            <p class="lead">Clicca sul pulsante "<a class="mylink"
+                                                    href="{{ route('admin.apartments.create') }}">Aggiungi
+                                                    Appartamento</a>" per crearne
                                                 uno.
                                             </p>
                                         </div>
